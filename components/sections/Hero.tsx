@@ -1,0 +1,84 @@
+import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+
+export function Hero() {
+  return (
+    <section className="relative bg-white overflow-hidden">
+      <div
+        aria-hidden
+        className="absolute inset-0 opacity-[0.04] pointer-events-none"
+        style={{ backgroundImage: "radial-gradient(circle at 70% 50%, #41bdc4 0%, transparent 60%)" }}
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-28">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="flex flex-col gap-6">
+            <span className="inline-flex w-fit items-center rounded-full border border-brand/40 bg-brand-50 px-4 py-1 text-xs font-medium text-brand-dark">
+              Hamarosan nyílik – 2026. május
+            </span>
+
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-normal text-black leading-tight">
+              Ahol a gyógyítás és a természet találkozik
+            </h1>
+
+            <p className="text-base sm:text-lg text-gray-600 leading-relaxed max-w-lg">
+              Magánrendelő gyermekgyógyászattal, holisztikus szemlélettel és
+              modern diagnosztikával — Inárcson és Dabasban.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-3 pt-2">
+              <Link
+                href="/idopontfoglalas"
+                className={cn(
+                  buttonVariants({ size: "lg" }),
+                  "bg-brand hover:bg-brand-dark text-white rounded-full px-8 font-medium border-transparent"
+                )}
+              >
+                Időpontot foglalok
+              </Link>
+              <Link
+                href="/rolunk"
+                className={cn(
+                  buttonVariants({ variant: "outline", size: "lg" }),
+                  "rounded-full px-8 border-black text-black hover:bg-gray-50 font-medium"
+                )}
+              >
+                Megismerem a rendelőt
+              </Link>
+            </div>
+          </div>
+
+          <div className="relative">
+            <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-brand-light flex items-center justify-center">
+              <div className="absolute inset-0 bg-gradient-to-br from-brand/20 to-brand/5" />
+              <div className="relative text-center p-8">
+                <div className="mx-auto mb-4 w-16 h-16 rounded-full bg-brand/20 flex items-center justify-center">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#41bdc4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                  </svg>
+                </div>
+                <p className="text-sm text-brand-dark font-medium">Rendelő fotó hamarosan</p>
+              </div>
+            </div>
+            <div className="absolute -bottom-4 -left-4 bg-white rounded-xl shadow-lg p-4 flex items-center gap-3 border border-gray-100">
+              <div className="w-10 h-10 rounded-full bg-brand-50 flex items-center justify-center shrink-0">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#41bdc4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+              </div>
+              <div>
+                <p className="text-xs font-semibold text-black">Online foglalás</p>
+                <p className="text-xs text-gray-500">Gyors és egyszerű</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
