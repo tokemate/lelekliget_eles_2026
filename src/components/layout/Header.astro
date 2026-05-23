@@ -2,6 +2,7 @@
 const navLinks = [
   { label: 'Főoldal', href: '/' },
   { label: 'Rólunk', href: '/rolunk' },
+  { label: 'Szolgáltatások', href: '/szolgaltatasok' },
   { label: 'Blog', href: '/blog' },
   { label: 'Kapcsolat', href: '/kapcsolat' },
 ];
@@ -18,68 +19,38 @@ const locations = [
 
       <!-- Logo -->
       <a href="/" class="flex items-center gap-3 shrink-0">
-        <img
-          src="/logo.png"
-          alt="Lélekliget Gyógycentrum logó"
-          width="48"
-          height="48"
-          class="h-10 w-auto lg:h-12"
-        />
-        <span class="font-heading text-lg font-semibold tracking-tight text-black hidden sm:block">
-          Lélekliget
-        </span>
+        <img src="/logo.png" alt="Lélekliget logó" width="48" height="48" class="h-10 w-auto lg:h-12" />
+        <span class="font-heading text-lg font-semibold tracking-tight text-black hidden sm:block">Lélekliget</span>
       </a>
 
       <!-- Desktop nav -->
       <nav class="hidden lg:flex items-center gap-8">
         {navLinks.map((link) => (
-          <a
-            href={link.href}
-            class="text-sm font-medium text-gray-700 hover:text-brand transition-colors"
-          >
+          <a href={link.href} class="text-sm font-medium text-gray-700 hover:text-brand transition-colors">
             {link.label}
           </a>
         ))}
 
-        <!-- Szolgáltatások dropdown -->
-        <div class="relative" id="services-menu">
+        <!-- Helyszínek dropdown — ugyanolyan szintű mint a többi link -->
+        <div class="relative">
           <button
-            id="services-btn"
-            class="flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-brand transition-colors"
+            id="loc-btn"
             aria-expanded="false"
+            class="flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-brand transition-colors"
           >
             Helyszínek
-            <svg id="services-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-200">
+            <svg id="loc-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-200">
               <polyline points="6 9 12 15 18 9"/>
             </svg>
           </button>
 
-          <div
-            id="services-dropdown"
-            class="absolute top-full left-1/2 -translate-x-1/2 mt-3 hidden w-72 bg-white rounded-2xl shadow-xl border border-gray-100 p-2 z-50"
-          >
+          <div id="loc-dropdown" class="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-72 bg-white rounded-2xl shadow-xl border border-gray-100 p-2 hidden z-50">
             {locations.map((loc) => (
-              <a
-                href={loc.href}
-                class="flex flex-col gap-0.5 rounded-xl px-4 py-3 hover:bg-brand-50 transition-colors group"
-              >
-                <span class="text-sm font-medium text-gray-900 group-hover:text-brand transition-colors">
-                  {loc.label}
-                </span>
+              <a href={loc.href} class="flex flex-col gap-0.5 rounded-xl px-4 py-3 hover:bg-brand-50 transition-colors group">
+                <span class="text-sm font-medium text-gray-900 group-hover:text-brand transition-colors">{loc.label}</span>
                 <span class="text-xs text-gray-500">{loc.desc}</span>
               </a>
             ))}
-            <div class="border-t border-gray-100 mt-1 pt-1">
-              <a
-                href="/szolgaltatasok"
-                class="flex items-center gap-1.5 rounded-xl px-4 py-2.5 text-xs font-medium text-brand hover:bg-brand-50 transition-colors"
-              >
-                Összes szolgáltatás
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-                </svg>
-              </a>
-            </div>
           </div>
         </div>
       </nav>
@@ -89,96 +60,69 @@ const locations = [
         <a href="/idopontfoglalas" class="hidden sm:inline-flex btn-brand text-sm px-6 py-2">
           Időpontot foglalok
         </a>
-        <button
-          id="menu-btn"
-          class="lg:hidden p-2 rounded-md text-gray-700 hover:text-brand"
-          aria-label="Menü megnyitása"
-          aria-expanded="false"
-        >
+        <button id="menu-btn" class="lg:hidden p-2 rounded-md text-gray-700 hover:text-brand" aria-label="Menü megnyitása" aria-expanded="false">
           <svg id="icon-menu" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="3" y1="12" x2="21" y2="12"/>
-            <line x1="3" y1="6" x2="21" y2="6"/>
-            <line x1="3" y1="18" x2="21" y2="18"/>
+            <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
           </svg>
           <svg id="icon-close" class="hidden" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="18" y1="6" x2="6" y2="18"/>
-            <line x1="6" y1="6" x2="18" y2="18"/>
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
           </svg>
         </button>
       </div>
     </div>
   </div>
 
-  <!-- Mobile menu -->
+  <!-- Mobil menü -->
   <div id="mobile-menu" class="hidden lg:hidden border-t border-gray-100 bg-white px-4 pb-6 pt-4">
     <nav class="flex flex-col gap-1">
       {navLinks.map((link) => (
-        <a
-          href={link.href}
-          class="rounded-xl px-3 py-2.5 text-base font-medium text-gray-800 hover:text-brand hover:bg-brand-50 transition-colors"
-        >
+        <a href={link.href} class="rounded-xl px-3 py-2.5 text-base font-medium text-gray-800 hover:text-brand hover:bg-brand-50 transition-colors">
           {link.label}
         </a>
       ))}
 
-      <!-- Helyszínek csoport mobilon -->
-      <div class="mt-1">
-        <p class="px-3 pt-2 pb-1 text-xs font-semibold uppercase tracking-widest text-gray-400">
-          Helyszínek
-        </p>
-        {locations.map((loc) => (
-          <a
-            href={loc.href}
-            class="flex flex-col gap-0.5 rounded-xl px-3 py-2.5 hover:bg-brand-50 transition-colors"
-          >
-            <span class="text-base font-medium text-gray-800 hover:text-brand">{loc.label}</span>
-            <span class="text-xs text-gray-500">{loc.desc}</span>
-          </a>
-        ))}
-        <a href="/szolgaltatasok" class="block rounded-xl px-3 py-2 text-sm font-medium text-brand hover:bg-brand-50 transition-colors">
-          Összes szolgáltatás →
+      <p class="px-3 pt-4 pb-1 text-xs font-semibold uppercase tracking-widest text-gray-400">Helyszínek</p>
+      {locations.map((loc) => (
+        <a href={loc.href} class="flex flex-col gap-0.5 rounded-xl px-3 py-2.5 hover:bg-brand-50 transition-colors">
+          <span class="text-base font-medium text-gray-800">{loc.label}</span>
+          <span class="text-xs text-gray-500">{loc.desc}</span>
         </a>
-      </div>
+      ))}
 
-      <a href="/idopontfoglalas" class="btn-brand mt-3 w-full text-center">
-        Időpontot foglalok
-      </a>
+      <a href="/idopontfoglalas" class="btn-brand mt-3 w-full text-center">Időpontot foglalok</a>
     </nav>
   </div>
 </header>
 
 <script>
   // Hamburger
-  const btn = document.getElementById('menu-btn');
-  const menu = document.getElementById('mobile-menu');
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
   const iconMenu = document.getElementById('icon-menu');
   const iconClose = document.getElementById('icon-close');
-
-  btn?.addEventListener('click', () => {
-    const isOpen = !menu?.classList.contains('hidden');
-    menu?.classList.toggle('hidden');
+  menuBtn?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
     iconMenu?.classList.toggle('hidden');
     iconClose?.classList.toggle('hidden');
-    btn.setAttribute('aria-expanded', String(!isOpen));
+    menuBtn.setAttribute('aria-expanded', String(!mobileMenu?.classList.contains('hidden')));
   });
 
-  // Szolgáltatások dropdown
-  const servicesBtn = document.getElementById('services-btn');
-  const dropdown = document.getElementById('services-dropdown');
-  const chevron = document.getElementById('services-chevron');
+  // Helyszínek dropdown
+  const locBtn = document.getElementById('loc-btn');
+  const locDropdown = document.getElementById('loc-dropdown');
+  const locChevron = document.getElementById('loc-chevron');
 
-  servicesBtn?.addEventListener('click', (e) => {
+  locBtn?.addEventListener('click', (e) => {
     e.stopPropagation();
-    const isOpen = !dropdown?.classList.contains('hidden');
-    dropdown?.classList.toggle('hidden');
-    chevron?.classList.toggle('rotate-180');
-    servicesBtn.setAttribute('aria-expanded', String(!isOpen));
+    const open = !locDropdown?.classList.contains('hidden');
+    locDropdown?.classList.toggle('hidden');
+    locChevron?.classList.toggle('rotate-180');
+    locBtn.setAttribute('aria-expanded', String(!open));
   });
 
-  // Kattintás kívülre → bezárás
   document.addEventListener('click', () => {
-    dropdown?.classList.add('hidden');
-    chevron?.classList.remove('rotate-180');
-    servicesBtn?.setAttribute('aria-expanded', 'false');
+    locDropdown?.classList.add('hidden');
+    locChevron?.classList.remove('rotate-180');
+    locBtn?.setAttribute('aria-expanded', 'false');
   });
 </script>
