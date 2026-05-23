@@ -47,8 +47,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <!-- Kapcsolati form -->
       <div>
         <h2 class="text-2xl font-normal text-gray-900 mb-6">Írjon nekünk</h2>
-        <form class="flex flex-col gap-4" name="contact" method="POST" data-netlify="true">
-          <input type="hidden" name="form-name" value="contact" />
+        <!-- TODO: form action beállítása (pl. Web3Forms vagy Resend API) -->
+        <form class="flex flex-col gap-4" name="contact" action="mailto:info@lelekliget.hu" method="GET">
           <div class="flex flex-col gap-1.5">
             <label for="name" class="text-sm font-medium text-gray-700">Neve</label>
             <input
