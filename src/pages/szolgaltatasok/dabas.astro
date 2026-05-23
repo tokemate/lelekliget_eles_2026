@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Dabasi Egység | Lélekliget Gyógycentrum"
+  description="NLS diagnosztika, étrend-tanácsadás és holisztikus kezelések a dabasi rendelőben."
+>
+  <!-- Hero -->
+  <section class="bg-brand-50 py-20 px-4">
+    <div class="mx-auto max-w-4xl text-center">
+      <h1 class="text-4xl md:text-5xl font-normal text-gray-900 mb-6">Dabasi Egység</h1>
+      <p class="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto mb-10">
+        Modern diagnosztikával és természetes gyógymódokkal a Dabas-környéki páciensek egészségéért.
+      </p>
+      <div class="w-full h-72 bg-brand-light rounded-2xl flex items-center justify-center relative">
+        <div class="absolute inset-0 bg-gradient-to-br from-brand/10 to-transparent rounded-2xl"></div>
+        <span class="relative text-sm text-brand-dark font-medium">Fotó hamarosan</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- NLS -->
+  <section class="py-20 px-4">
+    <div class="mx-auto max-w-5xl">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="flex flex-col gap-6">
+          <h2 class="text-3xl font-normal text-gray-900">NLS diagnosztika — a test belső világa</h2>
+          <p class="text-gray-600 leading-relaxed">
+            Az NLS (Non-Lineáris Szisztéma) mérés lehetővé teszi a szervezet finom energetikai
+            eltéréseinek feltérképezését fájdalommentesen. Korai jelzések, amelyek megelőzik a
+            tünetek kialakulását.
+          </p>
+          <blockquote class="border-l-4 border-brand pl-6 py-2">
+            <p class="text-gray-700 italic leading-relaxed">
+              „A prevenció alapja a korai felismerés, ahol a technológia segít belátni a láthatatlamba."
+            </p>
+          </blockquote>
+        </div>
+        <div class="w-full aspect-[4/3] bg-brand-light rounded-2xl flex items-center justify-center relative">
+          <div class="absolute inset-0 bg-gradient-to-br from-brand/10 to-transparent rounded-2xl"></div>
+          <span class="relative text-sm text-brand-dark font-medium">Fotó hamarosan</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Étrend-tanácsadás -->
+  <section class="bg-brand-50 py-20 px-4">
+    <div class="mx-auto max-w-5xl">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="w-full aspect-[4/3] bg-brand-light rounded-2xl flex items-center justify-center relative">
+          <div class="absolute inset-0 bg-gradient-to-br from-brand/10 to-transparent rounded-2xl"></div>
+          <span class="relative text-sm text-brand-dark font-medium">Fotó hamarosan</span>
+        </div>
+        <div class="flex flex-col gap-6">
+          <h2 class="text-3xl font-normal text-gray-900">Személyre szabott étrend-tanácsadás</h2>
+          <p class="text-gray-600 leading-relaxed">
+            Táth Katalin étrend-tanácsadónkkal együttműködve személyre szabott táplálkozási tervet
+            állítunk össze, figyelembe véve az egyéni biokémiai sajátosságokat és az NLS mérés eredményeit.
+          </p>
+          <ul class="flex flex-col gap-3">
+            {[
+              'Ételallergia és intolerancia vizsgálat',
+              'Bélflóra egyensúly helyreállítása',
+              'Életmódbeli változások támogatása',
+            ].map((item) => (
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-brand mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                <span class="text-gray-700">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-brand py-20 px-4">
+    <div class="mx-auto max-w-3xl text-center flex flex-col items-center gap-6">
+      <h2 class="text-3xl font-normal text-white">Foglaljon időpontot a dabasi rendelőbe</h2>
+      <p class="text-white/85 leading-relaxed max-w-xl">
+        NLS vizsgálat, étrend-tanácsadás vagy egyéb kezelés — válassza ki az Önnek megfelelő
+        időpontot.
+      </p>
+      <a href="/idopontfoglalas" class="inline-flex items-center rounded-full bg-white text-brand hover:bg-white/90 px-8 py-3 text-sm font-semibold transition-colors">
+        Időpontot foglalok
+      </a>
+    </div>
+  </section>
+</BaseLayout>

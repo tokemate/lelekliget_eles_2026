@@ -1,0 +1,72 @@
+---
+const navLinks = [
+  { label: 'Főoldal', href: '/' },
+  { label: 'Rólunk', href: '/rolunk' },
+  { label: 'Szolgáltatások', href: '/szolgaltatasok' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Kapcsolat', href: '/kapcsolat' },
+];
+
+const locations = [
+  { label: 'Inárcsi Magánrendelő', href: '/szolgaltatasok/inarcs' },
+  { label: 'Dabasi Egység', href: '/szolgaltatasok/dabas' },
+  { label: 'Online Tanácsadás', href: '/idopontfoglalas' },
+];
+
+const legal = [
+  { label: 'ÁSZF', href: '/aszf' },
+  { label: 'Adatkezelés', href: '/adatkezeles' },
+  { label: 'Cookie', href: '/cookie' },
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-gray-50 border-t border-gray-100 mt-auto">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+      <div class="sm:col-span-2 lg:col-span-1">
+        <a href="/" class="flex items-center gap-3 mb-4">
+          <img
+            src="/logo.png"
+            alt="Lélekliget Gyógycentrum logó"
+            width="40"
+            height="40"
+            class="h-9 w-auto"
+          />
+          <span class="font-heading text-base font-semibold text-black">Lélekliget</span>
+        </a>
+        <p class="text-sm text-gray-500 leading-relaxed max-w-xs">
+          Szakmai precizitás és holisztikus szemléletmód a gyógyítás szolgálatában.
+        </p>
+      </div>
+
+      {[
+        { title: 'Navigáció', items: navLinks },
+        { title: 'Helyszínek', items: locations },
+        { title: 'Jogi nyilatkozatok', items: legal },
+      ].map(({ title, items }) => (
+        <div>
+          <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">
+            {title}
+          </h3>
+          <ul class="space-y-2">
+            {items.map((item) => (
+              <li>
+                <a href={item.href} class="text-sm text-gray-600 hover:text-brand transition-colors">
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-10 pt-6 border-t border-gray-200">
+      <p class="text-xs text-gray-400">
+        © {year} Lélekliget Gyógycentrum — Minden jog fenntartva.
+      </p>
+    </div>
+  </div>
+</footer>

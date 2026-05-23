@@ -1,0 +1,92 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Kapcsolat | Lélekliget Gyógycentrum"
+  description="Vegye fel velünk a kapcsolatot. Elérhetőségeink, helyszíneink és kapcsolati űrlapunk."
+>
+  <section class="bg-brand-50 py-16 px-4 text-center">
+    <div class="mx-auto max-w-2xl">
+      <h1 class="text-4xl md:text-5xl font-normal text-gray-900 mb-4">Kapcsolat</h1>
+      <p class="text-lg text-gray-600 leading-relaxed">
+        Kérdése van? Örömmel segítünk. Írjon nekünk vagy hívjon minket.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 px-4">
+    <div class="mx-auto max-w-5xl grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <!-- Elérhetőségek -->
+      <div class="flex flex-col gap-8">
+        <div>
+          <h2 class="text-2xl font-normal text-gray-900 mb-6">Elérhetőségeink</h2>
+          <div class="flex flex-col gap-6">
+            <div class="flex flex-col gap-2">
+              <h3 class="text-sm font-semibold uppercase tracking-widest text-gray-400">Inárcs</h3>
+              <p class="text-gray-700">2345 Inárcs, Liget utca 12.</p>
+              <p class="text-gray-600 text-sm">H–P: 08:00 – 18:00</p>
+            </div>
+            <div class="flex flex-col gap-2">
+              <h3 class="text-sm font-semibold uppercase tracking-widest text-gray-400">Dabas</h3>
+              <p class="text-gray-700">2370 Dabas, Szent István tér 5.</p>
+              <p class="text-gray-600 text-sm">K–Cs: 09:00 – 17:00</p>
+            </div>
+            <div class="flex flex-col gap-2">
+              <h3 class="text-sm font-semibold uppercase tracking-widest text-gray-400">Email</h3>
+              <a href="mailto:info@lelekliget.hu" class="text-brand hover:underline">info@lelekliget.hu</a>
+            </div>
+            <div class="flex flex-col gap-2">
+              <h3 class="text-sm font-semibold uppercase tracking-widest text-gray-400">Telefon</h3>
+              <a href="tel:+36..." class="text-brand hover:underline">+36 …</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kapcsolati form -->
+      <div>
+        <h2 class="text-2xl font-normal text-gray-900 mb-6">Írjon nekünk</h2>
+        <form class="flex flex-col gap-4" name="contact" method="POST" data-netlify="true">
+          <input type="hidden" name="form-name" value="contact" />
+          <div class="flex flex-col gap-1.5">
+            <label for="name" class="text-sm font-medium text-gray-700">Neve</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              class="rounded-xl border border-gray-200 px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand"
+              placeholder="Kovács Anna"
+            />
+          </div>
+          <div class="flex flex-col gap-1.5">
+            <label for="email" class="text-sm font-medium text-gray-700">Email cím</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              class="rounded-xl border border-gray-200 px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand"
+              placeholder="anna@example.hu"
+            />
+          </div>
+          <div class="flex flex-col gap-1.5">
+            <label for="message" class="text-sm font-medium text-gray-700">Üzenet</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              required
+              class="rounded-xl border border-gray-200 px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand resize-none"
+              placeholder="Írja ide kérdését…"
+            ></textarea>
+          </div>
+          <button type="submit" class="btn-brand w-full justify-center">
+            Üzenet küldése
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

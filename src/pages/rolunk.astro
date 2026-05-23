@@ -1,0 +1,155 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const teamMembers = [
+  {
+    name: 'Dr. Molnár Péter',
+    role: 'Fogász',
+    description: 'Precíz szakember, aki a legmodernebb technológiákkal varázsol egészséges mosolyt.',
+  },
+  {
+    name: 'Táth Katalin',
+    role: 'Étrend-tanácsadó',
+    description: 'Személyre szabott táplálkozási tervekkel segít az életmódváltás rögös útján.',
+  },
+  {
+    name: 'Balogh Réka',
+    role: 'NLS-szakértő',
+    description: 'A szervezet rezgéseinek elemzésével segít feltárni az egyensúlytalanságokat.',
+  },
+];
+
+const values = [
+  {
+    title: 'Figyelem',
+    description: 'Minden páciensünkre elegendő időt szánunk, hogy valóban megértsük a panaszt.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`,
+  },
+  {
+    title: 'Átláthatóság',
+    description: 'Kezelési terveink világosak, érthetőek és minden lépéssel előre egyeztetjük.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+  },
+  {
+    title: 'Integráció',
+    description: 'Ötvözzük a hagyományos orvosi ismereteket a természetes gyógymódokkal.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>`,
+  },
+  {
+    title: 'Megelőzés',
+    description: 'Nem csak tüzet oltunk, hanem megtanítjuk, hogyan őrizheti meg hosszú távon egészségét.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>`,
+  },
+];
+---
+
+<BaseLayout
+  title="Rólunk | Lélekliget Gyógycentrum"
+  description="Ismerje meg csapatunkat és értékeinket. A Lélekliget Gyógycentrum alapítója és szakemberei a holisztikus gyógyítás megközelítését képviselik."
+>
+  <!-- Hero -->
+  <section class="bg-brand-50 py-20 px-4 text-center">
+    <div class="mx-auto max-w-2xl">
+      <h1 class="text-4xl md:text-5xl font-normal text-gray-900 mb-6">
+        A gyógyítás mögött emberek állnak
+      </h1>
+      <p class="text-lg text-gray-600 leading-relaxed">
+        Rendelőnk egy csapat munkájának eredménye, ahol a tudományos precizitás találkozik az
+        emberi figyelemmel és a természetes megoldásokkal.
+      </p>
+    </div>
+  </section>
+
+  <!-- Alapító -->
+  <section class="py-20 px-4">
+    <div class="mx-auto max-w-5xl">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="w-full rounded-2xl overflow-hidden">
+          <div class="w-full bg-brand-light rounded-2xl flex items-center justify-center relative" style="height: 500px">
+            <div class="absolute inset-0 bg-gradient-to-br from-brand/10 to-transparent rounded-2xl"></div>
+            <span class="relative text-sm text-brand-dark font-medium">Fotó hamarosan</span>
+          </div>
+        </div>
+        <div class="flex flex-col gap-6">
+          <span class="inline-flex w-fit items-center rounded-full bg-brand-light px-3 py-1 text-xs font-medium text-brand-dark">
+            Dr. Kovács Eszter — Gyermekorvos, rendelőalapító
+          </span>
+          <h2 class="text-3xl font-normal text-gray-900">Hivatásunk a holisztikus gyógyítás</h2>
+          <p class="text-gray-600 leading-relaxed">
+            18 éves klinikai tapasztalattal a hátam mögött alapítottam meg a Lélekligetet. Célom
+            egy olyan centrum létrehozása volt, ahol nem csak a tüneteket kezeljük, hanem az embert
+            a maga teljességében vizsgáljuk. Hiszek abban, hogy a gyógyulás útja a bizalom és a
+            folyamatos odafigyelésen alapul.
+          </p>
+          <blockquote class="border-l-4 border-brand pl-5 py-2">
+            <p class="text-gray-700 italic leading-relaxed">
+              „A legfontosabb eszközöm a figyelem, a legnagyobb sikerem pedig a mosolygó páciens."
+            </p>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Csapat -->
+  <section class="bg-brand-50 py-20 px-4">
+    <div class="mx-auto max-w-5xl">
+      <h2 class="text-3xl font-normal text-gray-900 text-center mb-12">Csapatunk</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {teamMembers.map((member) => (
+          <div class="overflow-hidden rounded-2xl border-0 shadow-sm bg-white">
+            <div class="aspect-square w-full bg-brand-light flex items-center justify-center relative">
+              <div class="absolute inset-0 bg-gradient-to-br from-brand/10 to-transparent"></div>
+              <span class="relative text-sm text-brand-dark font-medium">Fotó hamarosan</span>
+            </div>
+            <div class="p-6 flex flex-col gap-3">
+              <h3 class="text-lg font-medium text-gray-900">{member.name}</h3>
+              <span class="inline-flex w-fit items-center rounded-full bg-brand-light px-3 py-0.5 text-xs font-medium text-brand-dark">
+                {member.role}
+              </span>
+              <p class="text-sm text-gray-600 leading-relaxed">{member.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Értékek -->
+  <section class="py-20 px-4">
+    <div class="mx-auto max-w-5xl">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        {values.map((value) => (
+          <div class="border border-gray-100 shadow-sm bg-white rounded-2xl p-8 flex flex-col gap-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-light flex items-center justify-center text-brand-dark" set:html={value.icon} />
+            <h3 class="text-xl font-medium text-gray-900">{value.title}</h3>
+            <p class="text-gray-600 leading-relaxed">{value.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- doTERRA -->
+  <section class="py-20 px-4">
+    <div class="mx-auto max-w-3xl">
+      <div class="bg-brand-light rounded-2xl px-8 py-14 text-center flex flex-col items-center gap-6">
+        <p class="text-xs font-semibold tracking-widest text-brand-dark uppercase">
+          Természetes megoldások a mindennapi élethez
+        </p>
+        <h2 class="text-3xl font-normal text-gray-900">Természetes megoldások a mindennapi élethez</h2>
+        <p class="text-gray-700 leading-relaxed max-w-xl">
+          Rendelőnk kiemelt partnere a doTERRA, a világ vezető illóolaj-gyártója. Hiszünk abban,
+          hogy a természet ereje hatékony kiegészítője lehet a gyógyulási folyamatnak és a
+          megelőzésnek egyaránt. Ismerje meg tiszta, terápiás minőségű megoldásainkat.
+        </p>
+        <a
+          href="#"
+          class="inline-flex items-center rounded-full border border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white px-6 py-2 text-sm font-medium transition-colors"
+        >
+          Tovább a doTERRA oldalra →
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

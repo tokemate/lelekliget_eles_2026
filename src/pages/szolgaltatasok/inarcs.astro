@@ -1,0 +1,120 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Inárcsi Magánrendelő | Lélekliget Gyógycentrum"
+  description="Csendes, természetközeli környezetben, modern technológiával és szakértelemmel várjuk pácienseinket Inárcson."
+>
+  <!-- Hero -->
+  <section class="bg-brand-50 py-20 px-4">
+    <div class="mx-auto max-w-4xl text-center">
+      <span class="inline-block border border-brand text-brand text-xs font-semibold px-4 py-1.5 rounded-full mb-6">
+        Hamarosan nyílik – 2026. május
+      </span>
+      <h1 class="text-4xl md:text-5xl font-normal text-gray-900 mb-6">Inárcsi Magánrendelő</h1>
+      <p class="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto mb-10">
+        Csendes, természetközeli környezetben, modern technológiával és szakértelemmel várjuk
+        pácienseinket Inárcson. Ahol a gyógyítás és a nyugalom találkozik.
+      </p>
+      <div class="w-full h-72 bg-brand-light rounded-2xl flex items-center justify-center relative">
+        <div class="absolute inset-0 bg-gradient-to-br from-brand/10 to-transparent rounded-2xl"></div>
+        <span class="relative text-sm text-brand-dark font-medium">Fotó hamarosan</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gyermekgyógyászat -->
+  <section class="py-20 px-4">
+    <div class="mx-auto max-w-5xl">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="flex flex-col gap-6">
+          <h2 class="text-3xl font-normal text-gray-900">A gyerek egészségére figyelünk</h2>
+          <p class="text-gray-600 leading-relaxed">
+            Speciális gyermekgyógyászati ellátásunk során a legkisebbeknek test és lelki fejlődését
+            kísérjük figyelemmel szakértő kezekben.
+          </p>
+          <ul class="flex flex-col gap-4">
+            {[
+              'Rendszeres csecsemő- és gyermekvizsgálatok',
+              'Szakértő tanácsadás táplálkozás és fejlődés kérdéseiben',
+              'Barátságos, stresszmenetes környezet a kicsiknek',
+            ].map((item) => (
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-brand mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                <span class="text-gray-700">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="w-full aspect-[4/3] bg-brand-light rounded-2xl flex items-center justify-center relative">
+          <div class="absolute inset-0 bg-gradient-to-br from-brand/10 to-transparent rounded-2xl"></div>
+          <span class="relative text-sm text-brand-dark font-medium">Fotó hamarosan</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Funkcionális orvoslás -->
+  <section class="bg-brand-50 py-20 px-4">
+    <div class="mx-auto max-w-5xl">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="w-full aspect-[4/3] bg-brand-light rounded-2xl flex items-center justify-center relative">
+          <div class="absolute inset-0 bg-gradient-to-br from-brand/10 to-transparent rounded-2xl"></div>
+          <span class="relative text-sm text-brand-dark font-medium">Fotó hamarosan</span>
+        </div>
+        <div class="flex flex-col gap-6">
+          <h2 class="text-3xl font-normal text-gray-900">Amikor a szokásos vizsgálatok nem adnak választ</h2>
+          <p class="text-gray-600 leading-relaxed">
+            A funkcionális orvoslás az egyént egységként kezeli, keresve a tünetek mögötti
+            meghatározó gyökérokokkat és anyagcsere-folyamatokat.
+          </p>
+          <div class="grid grid-cols-2 gap-3">
+            {['Anyagcsere-analízis', 'Személyre szabott terv', 'Részletes laborvizsgálatok', 'Étrend-tanácsadás'].map((tag) => (
+              <span class="inline-flex items-center justify-center text-center border border-brand text-brand text-xs font-medium px-3 py-2 rounded-full leading-tight">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kiegészítő terápiák -->
+  <section class="py-20 px-4">
+    <div class="mx-auto max-w-3xl text-center flex flex-col items-center gap-8">
+      <h2 class="text-3xl font-normal text-gray-900">Holisztikus szemléletű kiegészítő terápiák</h2>
+      <p class="text-gray-600 leading-relaxed">
+        Inárcsi rendelőnkben nemcsak tüneteket kezelünk, hanem támogatjuk a test öngyógyító
+        folyamatát speciális wellness és energetikai kezelésekkel.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        {['Fitoterápia', 'Stresszkezelés', 'Életmód-tanácsadás', 'Homeopátia'].map((tag) => (
+          <span class="inline-flex items-center border border-brand text-brand text-sm font-medium px-4 py-1.5 rounded-full">
+            {tag}
+          </span>
+        ))}
+      </div>
+      <a href="/kapcsolat" class="btn-outline text-sm px-6 py-2.5">
+        Ismerje meg módszereinket
+      </a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-brand py-20 px-4">
+    <div class="mx-auto max-w-3xl text-center flex flex-col items-center gap-6">
+      <h2 class="text-3xl font-normal text-white">Foglaljon időpontot az inárcsi rendelőbe</h2>
+      <p class="text-white/85 leading-relaxed max-w-xl">
+        Válassza ki az Önnek megfelelő időpontot időpontfoglaló rendszerünkben, vagy hívja
+        asszisztensünket direkt.
+      </p>
+      <a href="/idopontfoglalas" class="inline-flex items-center rounded-full bg-white text-brand hover:bg-white/90 px-8 py-3 text-sm font-semibold transition-colors">
+        Időpontot foglalok
+      </a>
+    </div>
+  </section>
+</BaseLayout>

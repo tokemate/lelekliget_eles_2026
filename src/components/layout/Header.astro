@@ -1,0 +1,95 @@
+---
+const navLinks = [
+  { label: 'Főoldal', href: '/' },
+  { label: 'Rólunk', href: '/rolunk' },
+  { label: 'Szolgáltatások', href: '/szolgaltatasok' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Kapcsolat', href: '/kapcsolat' },
+];
+---
+
+<header class="sticky top-0 z-50 w-full bg-white border-b border-gray-100 shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 lg:h-20">
+      <a href="/" class="flex items-center gap-3 shrink-0">
+        <img
+          src="/logo.png"
+          alt="Lélekliget Gyógycentrum logó"
+          width="48"
+          height="48"
+          class="h-10 w-auto lg:h-12"
+        />
+        <span class="font-heading text-lg font-semibold tracking-tight text-black hidden sm:block">
+          Lélekliget
+        </span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-8">
+        {navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="text-sm font-medium text-gray-700 hover:text-brand transition-colors"
+          >
+            {link.label}
+          </a>
+        ))}
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a
+          href="/idopontfoglalas"
+          class="hidden sm:inline-flex btn-brand text-sm px-6 py-2"
+        >
+          Időpontot foglalok
+        </a>
+        <button
+          id="menu-btn"
+          class="lg:hidden p-2 rounded-md text-gray-700 hover:text-brand"
+          aria-label="Menü megnyitása"
+          aria-expanded="false"
+        >
+          <svg id="icon-menu" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+          <svg id="icon-close" class="hidden" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden lg:hidden border-t border-gray-100 bg-white px-4 pb-6 pt-4">
+    <nav class="flex flex-col gap-4">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="text-base font-medium text-gray-800 hover:text-brand transition-colors"
+        >
+          {link.label}
+        </a>
+      ))}
+      <a href="/idopontfoglalas" class="btn-brand mt-2 w-full text-center">
+        Időpontot foglalok
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const iconMenu = document.getElementById('icon-menu');
+  const iconClose = document.getElementById('icon-close');
+
+  btn?.addEventListener('click', () => {
+    const isOpen = !menu?.classList.contains('hidden');
+    menu?.classList.toggle('hidden');
+    iconMenu?.classList.toggle('hidden');
+    iconClose?.classList.toggle('hidden');
+    btn.setAttribute('aria-expanded', String(!isOpen));
+  });
+</script>

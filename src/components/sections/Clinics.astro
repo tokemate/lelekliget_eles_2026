@@ -1,0 +1,67 @@
+---
+const clinics = [
+  {
+    name: 'Inárcsi Magánrendelő',
+    address: '2345 Inárcs, Liget utca 12.',
+    hours: 'H–P: 08:00 – 18:00',
+    href: '/szolgaltatasok/inarcs',
+    badge: 'Hamarosan nyílik',
+  },
+  {
+    name: 'Dabasi Egység',
+    address: '2370 Dabas, Szent István tér 5.',
+    hours: 'K–Cs: 09:00 – 17:00',
+    href: '/szolgaltatasok/dabas',
+    badge: null,
+  },
+];
+---
+
+<section class="bg-gray-50 py-16 lg:py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid sm:grid-cols-2 gap-6">
+      {clinics.map((clinic) => (
+        <div class="rounded-2xl bg-white border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
+          <div class="w-full h-48 bg-brand-light flex items-center justify-center relative">
+            <div class="absolute inset-0 bg-gradient-to-br from-brand/10 to-brand/5"></div>
+            <div class="relative flex flex-col items-center gap-2 text-center p-4">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#41bdc4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="opacity-60">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+              </svg>
+              <span class="text-xs text-brand-dark font-medium">Rendelő fotó hamarosan</span>
+            </div>
+          </div>
+
+          <div class="p-6 lg:p-8 flex flex-col gap-3">
+            {clinic.badge && (
+              <span class="inline-flex w-fit items-center rounded-full bg-brand-light px-3 py-0.5 text-xs font-medium text-brand-dark">
+                {clinic.badge}
+              </span>
+            )}
+            <h3 class="text-xl font-normal text-black">{clinic.name}</h3>
+            <div class="flex flex-col gap-2 text-sm text-gray-600">
+              <div class="flex items-center gap-2">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#41bdc4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+                </svg>
+                <span>{clinic.address}</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#41bdc4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0">
+                  <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                </svg>
+                <span>{clinic.hours}</span>
+              </div>
+            </div>
+            <a href={clinic.href} class="inline-flex items-center gap-1.5 text-sm font-medium text-brand hover:text-brand-dark transition-colors mt-2">
+              Megnézem
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

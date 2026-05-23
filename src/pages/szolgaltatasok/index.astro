@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const services = [
+  {
+    title: 'Gyermekgyógyászat',
+    description: 'Átfogó ellátás a legkisebbeknek, a prevenciótól az akut betegségek szakszerű kezeléséig. Rendszeres szűrővizsgálatok, tanácsadás és holisztikus szemléletű fejlődéskísérés.',
+    href: '/szolgaltatasok/inarcs',
+    location: 'Inárcs',
+  },
+  {
+    title: 'Funkcionális orvoslás',
+    description: 'A tünetek mögötti gyökérokokra fókuszálunk. Részletes laborvizsgálatok, anyagcsere-analízis és személyre szabott kezelési terv.',
+    href: '/szolgaltatasok/inarcs',
+    location: 'Inárcs',
+  },
+  {
+    title: 'NLS diagnosztika',
+    description: 'Non-invazív energetikai állapotfelmérés a szervezet információs mezőinek elemzésével. Korai felismerés fájdalom nélkül.',
+    href: '/szolgaltatasok/dabas',
+    location: 'Dabas',
+  },
+  {
+    title: 'Étrend-tanácsadás',
+    description: 'Személyre szabott táplálkozási terv az életmódváltáshoz. Funkcionális szemlélet, amely figyelembe veszi az egyéni biokémiai sajátosságokat.',
+    href: '/szolgaltatasok/dabas',
+    location: 'Dabas',
+  },
+  {
+    title: 'Kiegészítő terápiák',
+    description: 'Fitoterápia, homeopátia, stresszkezelés és energetikai kezelések a test öngyógyító folyamatainak támogatásához.',
+    href: '/szolgaltatasok/inarcs',
+    location: 'Inárcs & Dabas',
+  },
+];
+---
+
+<BaseLayout
+  title="Szolgáltatások | Lélekliget Gyógycentrum"
+  description="Gyermekgyógyászat, funkcionális orvoslás, NLS diagnosztika és kiegészítő terápiák Inárcson és Dabasban."
+>
+  <section class="bg-brand-50 py-20 px-4 text-center">
+    <div class="mx-auto max-w-2xl">
+      <h1 class="text-4xl md:text-5xl font-normal text-gray-900 mb-6">Szolgáltatásaink</h1>
+      <p class="text-lg text-gray-600 leading-relaxed">
+        Holisztikus szemlélettel, modern eszközökkel — két helyszínen az Ön és családja egészségéért.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-20 px-4">
+    <div class="mx-auto max-w-5xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {services.map((s) => (
+          <a
+            href={s.href}
+            class="group flex flex-col gap-4 rounded-2xl border border-gray-100 bg-white p-8 hover:border-brand/30 hover:shadow-md transition-all"
+          >
+            <div class="flex items-center justify-between">
+              <h2 class="text-xl font-normal text-black group-hover:text-brand transition-colors">{s.title}</h2>
+              <span class="inline-flex items-center rounded-full bg-brand-50 px-3 py-0.5 text-xs font-medium text-brand-dark shrink-0">
+                {s.location}
+              </span>
+            </div>
+            <p class="text-sm text-gray-600 leading-relaxed">{s.description}</p>
+            <span class="inline-flex items-center gap-1.5 text-sm font-medium text-brand mt-auto">
+              Részletek
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-brand py-16 px-4">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="text-3xl font-normal text-white mb-4">Foglaljon időpontot</h2>
+      <p class="text-white/80 leading-relaxed mb-8">
+        Válassza ki az Önnek megfelelő helyszínt és időpontot.
+      </p>
+      <a href="/idopontfoglalas" class="inline-flex items-center gap-2 rounded-full bg-white text-brand hover:bg-white/90 px-8 py-3 text-sm font-semibold transition-colors">
+        Időpontot foglalok
+      </a>
+    </div>
+  </section>
+</BaseLayout>

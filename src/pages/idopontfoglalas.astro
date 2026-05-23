@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Időpontfoglalás | Lélekliget Gyógycentrum"
+  description="Foglaljon online időpontot a Lélekliget Gyógycentrum inárcsi vagy dabasi rendelőjébe."
+>
+  <section class="bg-brand-50 py-16 px-4 text-center">
+    <div class="mx-auto max-w-2xl">
+      <h1 class="text-4xl md:text-5xl font-normal text-gray-900 mb-4">Időpontfoglalás</h1>
+      <p class="text-lg text-gray-600 leading-relaxed">
+        Válassza ki a helyszínt és a kívánt időpontot az alábbi foglalórendszeren keresztül.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 px-4">
+    <div class="mx-auto max-w-4xl">
+      <!-- SimplyBook.me embed placeholder -->
+      <div class="rounded-2xl border border-gray-200 bg-white p-8 text-center">
+        <div class="mx-auto mb-6 w-16 h-16 rounded-full bg-brand-light flex items-center justify-center">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#41bdc4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+        </div>
+        <h2 class="text-2xl font-normal text-gray-900 mb-3">Online foglalás</h2>
+        <p class="text-gray-500 mb-6">
+          A SimplyBook.me foglalórendszer hamarosan elérhető lesz itt.
+        </p>
+        <!-- TODO: SimplyBook.me embed kód ide kerül -->
+        <!-- <div id="sbw_..."></div><script src="..."></script> -->
+        <p class="text-sm text-gray-400">
+          Addig hívjon minket: <a href="tel:+36..." class="text-brand hover:underline">+36 …</a>
+        </p>
+      </div>
+
+      <div class="mt-10 grid sm:grid-cols-2 gap-6">
+        <div class="rounded-2xl border border-gray-100 bg-white p-6 flex flex-col gap-3">
+          <h3 class="text-lg font-normal text-black">Inárcsi Magánrendelő</h3>
+          <p class="text-sm text-gray-500">2345 Inárcs, Liget utca 12.</p>
+          <p class="text-sm text-gray-500">H–P: 08:00 – 18:00</p>
+          <a href="/szolgaltatasok/inarcs" class="text-sm font-medium text-brand hover:text-brand-dark transition-colors">
+            Szolgáltatások →
+          </a>
+        </div>
+        <div class="rounded-2xl border border-gray-100 bg-white p-6 flex flex-col gap-3">
+          <h3 class="text-lg font-normal text-black">Dabasi Egység</h3>
+          <p class="text-sm text-gray-500">2370 Dabas, Szent István tér 5.</p>
+          <p class="text-sm text-gray-500">K–Cs: 09:00 – 17:00</p>
+          <a href="/szolgaltatasok/dabas" class="text-sm font-medium text-brand hover:text-brand-dark transition-colors">
+            Szolgáltatások →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
