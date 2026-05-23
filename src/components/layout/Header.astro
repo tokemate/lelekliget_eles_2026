@@ -1,8 +1,11 @@
 ---
-const navLinks = [
+const navStart = [
   { label: 'Főoldal', href: '/' },
   { label: 'Rólunk', href: '/rolunk' },
   { label: 'Szolgáltatások', href: '/szolgaltatasok' },
+];
+
+const navEnd = [
   { label: 'Blog', href: '/blog' },
   { label: 'Kapcsolat', href: '/kapcsolat' },
 ];
@@ -25,13 +28,13 @@ const locations = [
 
       <!-- Desktop nav -->
       <nav class="hidden lg:flex items-center gap-8">
-        {navLinks.map((link) => (
+        {navStart.map((link) => (
           <a href={link.href} class="text-sm font-medium text-gray-700 hover:text-brand transition-colors">
             {link.label}
           </a>
         ))}
 
-        <!-- Helyszínek dropdown — ugyanolyan szintű mint a többi link -->
+        <!-- Helyszínek dropdown — Szolgáltatások után, Blog előtt -->
         <div class="relative">
           <button
             id="loc-btn"
@@ -53,6 +56,12 @@ const locations = [
             ))}
           </div>
         </div>
+
+        {navEnd.map((link) => (
+          <a href={link.href} class="text-sm font-medium text-gray-700 hover:text-brand transition-colors">
+            {link.label}
+          </a>
+        ))}
       </nav>
 
       <!-- CTA + hamburger -->
@@ -75,7 +84,7 @@ const locations = [
   <!-- Mobil menü -->
   <div id="mobile-menu" class="hidden lg:hidden border-t border-gray-100 bg-white px-4 pb-6 pt-4">
     <nav class="flex flex-col gap-1">
-      {navLinks.map((link) => (
+      {navStart.map((link) => (
         <a href={link.href} class="rounded-xl px-3 py-2.5 text-base font-medium text-gray-800 hover:text-brand hover:bg-brand-50 transition-colors">
           {link.label}
         </a>
@@ -86,6 +95,12 @@ const locations = [
         <a href={loc.href} class="flex flex-col gap-0.5 rounded-xl px-3 py-2.5 hover:bg-brand-50 transition-colors">
           <span class="text-base font-medium text-gray-800">{loc.label}</span>
           <span class="text-xs text-gray-500">{loc.desc}</span>
+        </a>
+      ))}
+
+      {navEnd.map((link) => (
+        <a href={link.href} class="rounded-xl px-3 py-2.5 text-base font-medium text-gray-800 hover:text-brand hover:bg-brand-50 transition-colors">
+          {link.label}
         </a>
       ))}
 
