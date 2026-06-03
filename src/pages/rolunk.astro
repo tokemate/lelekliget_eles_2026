@@ -1,6 +1,24 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
+const teamMembers = [
+  {
+    name: 'Dr. Molnár Péter',
+    role: 'Fogász',
+    description: 'Precíz szakember, aki a legmodernebb technológiákkal varázsol egészséges mosolyt.',
+  },
+  {
+    name: 'Balogh Réka',
+    role: 'NLS-szakértő',
+    description: 'A szervezet rezgéseinek elemzésével segít feltárni az egyensúlytalanságokat.',
+  },
+  {
+    name: 'Varga Zsolt',
+    role: 'Funkcionális orvos',
+    description: 'Anyagcsere-analízissel és személyre szabott kezelési tervekkel támogatja a páciensek gyógyulását.',
+  },
+];
+
 const values = [
   {
     title: 'Figyelem',
@@ -187,6 +205,25 @@ const values = [
             <span class="relative text-sm text-brand-dark font-medium">Fotó hamarosan</span>
           </div>
         </div>
+      </div>
+
+      <!-- 3 oszlopos csapat grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {teamMembers.map((member) => (
+          <div class="overflow-hidden rounded-2xl shadow-sm bg-white">
+            <div class="aspect-square w-full bg-brand-light flex items-center justify-center relative">
+              <div class="absolute inset-0 bg-gradient-to-br from-brand/10 to-transparent"></div>
+              <span class="relative text-sm text-brand-dark font-medium">Fotó hamarosan</span>
+            </div>
+            <div class="p-6 flex flex-col gap-3">
+              <h3 class="text-lg font-medium text-gray-900">{member.name}</h3>
+              <span class="inline-flex w-fit items-center rounded-full bg-brand-light px-3 py-0.5 text-xs font-medium text-brand-dark">
+                {member.role}
+              </span>
+              <p class="text-sm text-gray-600 leading-relaxed">{member.description}</p>
+            </div>
+          </div>
+        ))}
       </div>
 
     </div>
