@@ -1,24 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const teamMembers = [
-  {
-    name: 'Dr. Molnár Péter',
-    role: 'Fogász',
-    description: 'Precíz szakember, aki a legmodernebb technológiákkal varázsol egészséges mosolyt.',
-  },
-  {
-    name: 'Táth Katalin',
-    role: 'Étrend-tanácsadó',
-    description: 'Személyre szabott táplálkozási tervekkel segít az életmódváltás rögös útján.',
-  },
-  {
-    name: 'Balogh Réka',
-    role: 'NLS-szakértő',
-    description: 'A szervezet rezgéseinek elemzésével segít feltárni az egyensúlytalanságokat.',
-  },
-];
-
 const values = [
   {
     title: 'Figyelem',
@@ -47,21 +29,9 @@ const values = [
   title="Rólunk | Lélekliget Gyógycentrum"
   description="Ismerje meg csapatunkat és értékeinket. A Lélekliget Gyógycentrum alapítója és szakemberei a holisztikus gyógyítás megközelítését képviselik."
 >
-  <!-- Hero -->
-  <section class="bg-brand-50 py-20 px-4 text-center">
-    <div class="mx-auto max-w-2xl">
-      <h1 class="text-4xl md:text-5xl font-normal text-gray-900 mb-6">
-        A gyógyítás mögött emberek állnak
-      </h1>
-      <p class="text-lg text-gray-600 leading-relaxed">
-        Rendelőnk egy csapat munkájának eredménye, ahol a tudományos precizitás találkozik az
-        emberi figyelemmel és a természetes megoldásokkal.
-      </p>
-    </div>
-  </section>
 
-  <!-- Holisztikus gyógyítás bemutatása -->
-  <section class="py-20 px-4">
+  <!-- ═══ SZEMLÉLETÜNK ═══ -->
+  <section class="py-24 px-4">
     <div class="mx-auto max-w-5xl flex flex-col gap-20">
 
       <!-- Bevezető -->
@@ -69,9 +39,9 @@ const values = [
         <span class="inline-flex items-center justify-center rounded-full bg-brand-50 border border-brand/20 px-4 py-1 text-xs font-semibold tracking-widest uppercase text-brand-dark">
           Szemléletünk
         </span>
-        <h2 class="text-3xl sm:text-4xl font-normal text-gray-900 leading-snug">
+        <h1 class="text-3xl sm:text-4xl font-normal text-gray-900 leading-snug">
           A holisztikus gyógyítás, amely a figyelem, átláthatóság és megelőzés alapelveire épül
-        </h2>
+        </h1>
         <p class="text-gray-500 leading-relaxed text-base">
           A holisztikus gyógyítás célja, hogy a test, lélek és szellem harmóniáját helyreállítsa,
           figyelembe véve az egyén teljes körű egészségét.
@@ -91,9 +61,9 @@ const values = [
           <span class="inline-flex w-fit items-center rounded-full bg-brand-light px-3 py-1 text-xs font-semibold text-brand-dark uppercase tracking-widest">
             Test & Lélek
           </span>
-          <h3 class="text-2xl sm:text-3xl font-normal text-gray-900 leading-snug">
+          <h2 class="text-2xl sm:text-3xl font-normal text-gray-900 leading-snug">
             Az ember egységként, nem tünetként kezelve
-          </h3>
+          </h2>
           <p class="text-gray-600 leading-relaxed">
             Nem a betegséget, hanem az embert látjuk. A holisztikus szemlélet abban hisz, hogy
             minden tünet mögött mélyebb összefüggés húzódik — legyen az életmódbeli, érzelmi vagy
@@ -120,9 +90,9 @@ const values = [
           <span class="inline-flex w-fit items-center rounded-full bg-brand-light px-3 py-1 text-xs font-semibold text-brand-dark uppercase tracking-widest">
             Módszerünk
           </span>
-          <h3 class="text-2xl sm:text-3xl font-normal text-gray-900 leading-snug">
+          <h2 class="text-2xl sm:text-3xl font-normal text-gray-900 leading-snug">
             Tudományos alap, természetes kiegészítés
-          </h3>
+          </h2>
           <p class="text-gray-600 leading-relaxed">
             Hiszünk a bizonyítékokon alapuló orvoslásban, ugyanakkor nyitottak vagyunk a természet
             adta lehetőségekre is. Rendelőinkben a modern diagnosztika és a komplementer terápiák
@@ -149,21 +119,36 @@ const values = [
     </div>
   </section>
 
-  <!-- Alapító -->
-  <section class="py-20 px-4">
-    <div class="mx-auto max-w-5xl">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+  <!-- ═══ CSAPAT — EMBEREK ═══ -->
+  <section class="bg-brand-50 py-24 px-4">
+    <div class="mx-auto max-w-5xl flex flex-col gap-20">
+
+      <div class="max-w-xl mx-auto text-center flex flex-col gap-3">
+        <span class="inline-flex items-center justify-center rounded-full bg-white border border-brand/20 px-4 py-1 text-xs font-semibold tracking-widest uppercase text-brand-dark">
+          Csapatunk
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-normal text-gray-900">
+          A gyógyítás mögött emberek állnak
+        </h2>
+        <p class="text-gray-500 leading-relaxed">
+          Rendelőnk egy csapat munkájának eredménye, ahol a tudományos precizitás találkozik az
+          emberi figyelemmel és a természetes megoldásokkal.
+        </p>
+      </div>
+
+      <!-- Személy 1: fotó bal, szöveg jobb -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
         <div class="w-full rounded-2xl overflow-hidden">
-          <div class="w-full bg-brand-light rounded-2xl flex items-center justify-center relative" style="height: 500px">
+          <div class="w-full bg-brand-light rounded-2xl flex items-center justify-center relative" style="height: 480px">
             <div class="absolute inset-0 bg-gradient-to-br from-brand/10 to-transparent rounded-2xl"></div>
             <span class="relative text-sm text-brand-dark font-medium">Fotó hamarosan</span>
           </div>
         </div>
         <div class="flex flex-col gap-6">
-          <span class="inline-flex w-fit items-center rounded-full bg-brand-light px-3 py-1 text-xs font-medium text-brand-dark">
-            Dr. Kovács Eszter — Gyermekorvos, rendelőalapító
+          <span class="inline-flex w-fit items-center rounded-full bg-white border border-brand/20 px-3 py-1 text-xs font-medium text-brand-dark">
+            Gyermekorvos · Rendelőalapító
           </span>
-          <h2 class="text-3xl font-normal text-gray-900">Hivatásunk a holisztikus gyógyítás</h2>
+          <h3 class="text-2xl sm:text-3xl font-normal text-gray-900">Dr. Kovács Eszter</h3>
           <p class="text-gray-600 leading-relaxed">
             18 éves klinikai tapasztalattal a hátam mögött alapítottam meg a Lélekligetet. Célom
             egy olyan centrum létrehozása volt, ahol nem csak a tüneteket kezeljük, hanem az embert
@@ -177,34 +162,37 @@ const values = [
           </blockquote>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- Csapat -->
-  <section id="csapat" class="bg-brand-50 py-20 px-4">
-    <div class="mx-auto max-w-5xl">
-      <h2 class="text-3xl font-normal text-gray-900 text-center mb-12">Csapatunk</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {teamMembers.map((member) => (
-          <div class="overflow-hidden rounded-2xl border-0 shadow-sm bg-white">
-            <div class="aspect-square w-full bg-brand-light flex items-center justify-center relative">
-              <div class="absolute inset-0 bg-gradient-to-br from-brand/10 to-transparent"></div>
-              <span class="relative text-sm text-brand-dark font-medium">Fotó hamarosan</span>
-            </div>
-            <div class="p-6 flex flex-col gap-3">
-              <h3 class="text-lg font-medium text-gray-900">{member.name}</h3>
-              <span class="inline-flex w-fit items-center rounded-full bg-brand-light px-3 py-0.5 text-xs font-medium text-brand-dark">
-                {member.role}
-              </span>
-              <p class="text-sm text-gray-600 leading-relaxed">{member.description}</p>
-            </div>
+      <!-- Személy 2: szöveg bal, fotó jobb -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <div class="flex flex-col gap-6 order-2 lg:order-1">
+          <span class="inline-flex w-fit items-center rounded-full bg-white border border-brand/20 px-3 py-1 text-xs font-medium text-brand-dark">
+            Étrend-tanácsadó · NLS-szakértő
+          </span>
+          <h3 class="text-2xl sm:text-3xl font-normal text-gray-900">Táth Katalin</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Személyre szabott táplálkozási tervekkel és NLS-alapú állapotfelméréssel segítem
+            pácienseinket az életmódváltás útján. Meggyőződésem, hogy a helyes táplálkozás és
+            a szervezet energetikai egyensúlya elválaszthatatlan egymástól.
+          </p>
+          <blockquote class="border-l-4 border-brand pl-5 py-2">
+            <p class="text-gray-700 italic leading-relaxed">
+              „Minden szervezet egyedi — az étrend sem lehet sablonos."
+            </p>
+          </blockquote>
+        </div>
+        <div class="w-full rounded-2xl overflow-hidden order-1 lg:order-2">
+          <div class="w-full bg-brand-light rounded-2xl flex items-center justify-center relative" style="height: 480px">
+            <div class="absolute inset-0 bg-gradient-to-br from-brand/10 to-transparent rounded-2xl"></div>
+            <span class="relative text-sm text-brand-dark font-medium">Fotó hamarosan</span>
           </div>
-        ))}
+        </div>
       </div>
+
     </div>
   </section>
 
-  <!-- Értékek -->
+  <!-- ═══ ÉRTÉKEK ═══ -->
   <section class="py-20 px-4">
     <div class="mx-auto max-w-5xl">
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -265,4 +253,5 @@ const values = [
       </div>
     </div>
   </section>
+
 </BaseLayout>
