@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Sikeres foglalás | Lélekliget Gyógycentrum"
+  description="Időpontja sikeresen rögzítve. Hamarosan visszajelzést kap emailben."
+>
+  <section class="min-h-[70vh] flex items-center justify-center px-4 py-20">
+    <div class="mx-auto max-w-lg text-center flex flex-col items-center gap-6">
+
+      <div class="w-20 h-20 rounded-full bg-brand-light flex items-center justify-center">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#41bdc4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+
+      <h1 class="text-3xl md:text-4xl font-normal text-gray-900">
+        Köszönjük a foglalást!
+      </h1>
+
+      <p class="text-lg text-gray-600 leading-relaxed">
+        Időpontja sikeresen rögzítve. Hamarosan emailben visszajelzést kap a foglalás részleteiről.
+      </p>
+
+      <p class="text-sm text-gray-400">
+        Ha kérdése van, írjon nekünk a
+        <a href="mailto:info@lelekliget.hu" class="text-brand hover:underline">info@lelekliget.hu</a>
+        címre.
+      </p>
+
+      <a
+        href="/"
+        class="inline-flex items-center justify-center gap-2 rounded-full bg-brand hover:bg-brand-dark text-white shadow-lg shadow-brand/30 px-8 py-3.5 text-sm font-semibold tracking-wide transition-colors mt-2"
+      >
+        Vissza a főoldalra
+      </a>
+
+    </div>
+  </section>
+</BaseLayout>
+
+<script type="text/javascript" is:inline>
+  if (typeof fbq !== 'undefined') {
+    fbq('track', 'Schedule');
+  }
+</script>
