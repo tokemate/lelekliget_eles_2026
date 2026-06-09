@@ -1,22 +1,46 @@
 ---
 const services = [
   {
-    title: 'Gyermekgyógyászat',
+    title: 'Funkcionális gyermekgyógyászat',
     description: 'Átfogó ellátás a legkisebbeknek, a prevenciótól az akut betegségek szakszerű kezeléséig.',
     href: '/szolgaltatasok/inarcs',
     icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>`,
   },
   {
-    title: 'Funkcionális orvoslás',
-    description: 'A gyökéroknál ragadja meg a problémát, az élettani folyamatok helyreállítására törekedve.',
+    title: 'Funkcionális felnőtt belgyógyászat',
+    description: 'Segítünk a hosszú távú betegségek kezelésében, valódi okának feltárásában, állapot stabilizálásában, az életminőség javításában.',
     href: '/szolgaltatasok/inarcs',
-    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>`,
   },
   {
-    title: 'NLS mérés',
+    title: 'Arcüregi panaszok komplex ellátása',
+    description: 'Nemcsak a tüneteket nyomjuk el: megkeressük a gyulladás valódi okát, és a szervezet öngyógyító folyamatait aktiváljuk. Véget vetünk a nehéz légzésnek és a feszítő arcüregi fájdalomnak – természetesen, az egész családnak.',
+    href: '/szolgaltatasok/inarcs',
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+  },
+  {
+    title: 'NLS teljes test állapotfelmérés',
     description: 'Modern, non-invazív állapotfelmérés a szervezet információs mezőinek elemzésével.',
     href: '/szolgaltatasok/dabas',
     icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>`,
+  },
+  {
+    title: 'BEMER terápia',
+    description: 'A mikrokeringés támogatását célzó kíméletes kiegészítő kezelés az egészség megőrzése és a regeneráció elősegítésére.',
+    href: '/rolunk',
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
+  },
+  {
+    title: 'dōTERRA illóolajok a megelőzésért és gyógyulásért',
+    description: 'Fedezze fel a tiszta, terápiás minőségű esszenciális olajok erejét!',
+    href: '/rolunk',
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 007-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 007 7z"/></svg>`,
+  },
+  {
+    title: 'Kiegészítő terápiák',
+    description: 'AromaTouch masszázs, nyirokmasszázs, energiagyógyászat, csontkovácsolás, családállítás, ingás közvetítés, hangtál, fülakupunktúra.',
+    href: '/szolgaltatasok/dabas',
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>`,
   },
 ];
 ---
@@ -26,7 +50,7 @@ const services = [
     <h2 class="text-2xl sm:text-3xl lg:text-4xl font-normal text-black text-center mb-12">
       Miben segíthetünk?
     </h2>
-    <div class="grid sm:grid-cols-3 gap-6">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {services.map((s) => (
         <div class="group flex flex-col gap-4 rounded-2xl border border-gray-100 bg-white p-6 lg:p-8 hover:border-brand/30 hover:shadow-md transition-all">
           <div class="w-12 h-12 rounded-xl bg-brand-light flex items-center justify-center text-brand group-hover:bg-brand group-hover:text-white transition-colors" set:html={s.icon} />

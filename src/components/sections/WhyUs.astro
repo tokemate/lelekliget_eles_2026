@@ -1,19 +1,34 @@
 ---
 const features = [
   {
-    title: 'Holisztikus szemlélet',
-    description: 'Nem csak a tüneteket, hanem az embert egészségében kezeljük, figyelembe véve a környezeti és lelki tényezőket.',
-    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>`,
-  },
-  {
-    title: 'Két helyszín',
-    description: 'Modern felszereltségű rendelőink Inárcson és Dabasban várják pácienseinket a környező életmódért.',
+    title: 'Két helyszín, egy szemlélet',
+    description: 'Magánorvosi rendelés Inárcson, a kiegészítő terápiák Dabason is elérhetőek.',
     icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>`,
   },
   {
     title: 'Egyszerű foglalás',
-    description: 'Gyors és áttekinthető online felületen foglalhat időpontot szakrendelőinkre otthona kényelméből.',
+    description: 'A magánrendelésre online is tud egyszerűen időpontot foglalni, otthona kényelméből.',
     icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`,
+  },
+  {
+    title: 'Oknyomozó gyógyítás',
+    description: 'Nem elégszünk meg a gyors tüneti megoldásokkal (mint az ismételt antibiotikumok vagy szteroidok). A problémák – például a visszatérő arcüreggyulladás – gyökerét keressük meg és szüntetjük meg.',
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`,
+  },
+  {
+    title: 'Figyelem és elegendő idő Önre',
+    description: 'Nálunk nincs sürgetés vagy 5 perces futószalag-rendelés. Minden páciensünkre dedikált, bőséges időt szánunk, hogy alaposan átbeszélhessük a panaszokat és a kezelési tervet.',
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+  },
+  {
+    title: 'Családbarát rendelés',
+    description: 'Nem kell külön orvoshoz vinni a gyermeket és külön belgyógyászt keresni a szülőknek, nagyszülőknek. Nálunk az egész család biztonságban van, a csecsemőkortól az időskorig.',
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>`,
+  },
+  {
+    title: 'A nyugati és az alternatív orvoslás ötvözete',
+    description: 'Nem kell választania a modern diagnosztika és a természetes gyógymódok között. A kettő nálunk kiegészíti egymást: a legbiztonságosabb és leghatékonyabb terápiát állítjuk össze Önnek.',
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>`,
   },
 ];
 ---
@@ -23,7 +38,7 @@ const features = [
     <h2 class="text-2xl sm:text-3xl lg:text-4xl font-normal text-black text-center mb-12">
       Miért válasszon minket?
     </h2>
-    <div class="grid sm:grid-cols-3 gap-6">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {features.map((f) => (
         <div class="bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow rounded-2xl p-6 lg:p-8 flex flex-col gap-4">
           <div class="w-12 h-12 rounded-xl bg-brand-light flex items-center justify-center text-brand" set:html={f.icon} />
