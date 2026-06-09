@@ -3,141 +3,79 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const teamMembers = [
   {
-    name: 'Dr. Molnár Péter',
-    role: 'Fogász',
-    description: 'Precíz szakember, aki a legmodernebb technológiákkal varázsol egészséges mosolyt.',
+    name: 'Petrányi Zsoltné Ildikó',
+    role: 'Masszőr',
+    quote: 'Energetikai, talp- és nyirokmasszázs a test és a lélek harmóniájáért – támogassa szervezete öngyógyító folyamatait és méregtelenítését!',
+    description: 'Kezeléseim során – energetikai masszázs, talpmasszázs és nyirokmasszázs – az egyensúly visszaállítását segítem, figyelemmel, jelenléttel és személyre szabott megközelítéssel. Fontos számomra, hogy minden vendégem biztonságban, elfogadásban és nyugalomban érezze magát.',
   },
   {
-    name: 'Balogh Réka',
-    role: 'NLS-szakértő',
-    description: 'A szervezet rezgéseinek elemzésével segít feltárni az egyensúlytalanságokat.',
+    name: 'Udvardi Zsuzsanna',
+    role: 'Természetgyógyász, fülakupunktúrás addiktológus',
+    quote: 'Lépjen a változás útjára: csökkentse a stresszt, győzze le a sóvárgást diszkrét fülakupunktúrával, és töltődjön fel a tiszta esszenciális illóolajok érintésével.',
+    description: 'Fülakupunktúrás addiktológiával segítek csökkenteni a sóvárgást és enyhíteni a feszültséget. A doTERRA AromaTouch™ terápia során nyolcféle terápiás minőségű illóolajjal támogatom a szervezet öngyógyító folyamatait és az immunrendszert.',
   },
   {
-    name: 'Varga Zsolt',
-    role: 'Funkcionális orvos',
-    description: 'Anyagcsere-analízissel és személyre szabott kezelési tervekkel támogatja a páciensek gyógyulását.',
-  },
-];
-
-const values = [
-  {
-    title: 'Figyelem',
-    description: 'Minden páciensünkre elegendő időt szánunk, hogy valóban megértsük a panaszt.',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`,
-  },
-  {
-    title: 'Átláthatóság',
-    description: 'Kezelési terveink világosak, érthetőek és minden lépéssel előre egyeztetjük.',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
-  },
-  {
-    title: 'Integráció',
-    description: 'Ötvözzük a hagyományos orvosi ismereteket a természetes gyógymódokkal.',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>`,
-  },
-  {
-    title: 'Megelőzés',
-    description: 'Nem csak tüzet oltunk, hanem megtanítjuk, hogyan őrizheti meg hosszú távon egészségét.',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>`,
+    name: 'Czank Edina',
+    role: 'Asszisztens',
+    quote: 'Célom, hogy kedvességgel, empátiával és szakmai odafigyeléssel támogassam pácienseinket.',
+    description: 'Egészségügyi és szépségápolási végzettséggel (ápoló, kozmetikus, testkezelő) két orvos munkáját segítem asszisztensként. A holisztikus szemlélet nemcsak a munkámban, hanem a mindennapjaimban is jelen van — rendszeresen jógázom, hogy megőrizzem a harmóniát és a tudatos jelenlétet.',
   },
 ];
 ---
 
 <BaseLayout
   title="Rólunk | Lélekliget Gyógycentrum"
-  description="Ismerje meg csapatunkat és értékeinket. A Lélekliget Gyógycentrum alapítója és szakemberei a holisztikus gyógyítás megközelítését képviselik."
+  description="Ismerje meg rendelőnk történetét, szakmai hátterét és a holisztikus gyógyítás iránti elkötelezettségünket."
 >
 
-  <!-- ═══ SZEMLÉLETÜNK ═══ -->
-  <section class="py-24 px-4">
-    <div class="mx-auto max-w-5xl flex flex-col gap-20">
-
-      <!-- Bevezető -->
-      <div class="max-w-2xl mx-auto text-center flex flex-col gap-4">
-        <span class="inline-flex items-center justify-center rounded-full bg-brand-50 border border-brand/20 px-4 py-1 text-xs font-semibold tracking-widest uppercase text-brand-dark">
-          Szemléletünk
-        </span>
-        <h1 class="text-3xl sm:text-4xl font-normal text-gray-900 leading-snug">
-          A holisztikus gyógyítás, amely a figyelem, átláthatóság és megelőzés alapelveire épül
-        </h1>
-        <p class="text-gray-500 leading-relaxed text-base">
-          A holisztikus gyógyítás célja, hogy a test, lélek és szellem harmóniáját helyreállítsa,
-          figyelembe véve az egyén teljes körű egészségét.
-        </p>
-      </div>
-
-      <!-- Kártya 1: fotó bal, szöveg jobb -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-        <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden">
-          <img
-            src="https://images.unsplash.com/photo-1518531933922-27c8d4bde906?w=900&q=80&fit=crop"
-            alt="Holisztikus gyógyítás"
-            class="w-full h-full object-cover"
-          />
-        </div>
-        <div class="flex flex-col gap-5">
-          <span class="inline-flex w-fit items-center rounded-full bg-brand-light px-3 py-1 text-xs font-semibold text-brand-dark uppercase tracking-widest">
-            Test & Lélek
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-normal text-gray-900 leading-snug">
-            Az ember egységként, nem tünetként kezelve
-          </h2>
-          <p class="text-gray-600 leading-relaxed">
-            Nem a betegséget, hanem az embert látjuk. A holisztikus szemlélet abban hisz, hogy
-            minden tünet mögött mélyebb összefüggés húzódik — legyen az életmódbeli, érzelmi vagy
-            fizikai egyensúlytalanság. Ezért kezelési tervünk mindig a teljes embert veszi figyelembe.
-          </p>
-          <ul class="flex flex-col gap-2.5">
-            {['Személyre szabott megközelítés', 'Test, lélek és szellem harmóniája', 'Megelőzés mint elsődleges cél'].map(item => (
-              <li class="flex items-center gap-3 text-sm text-gray-700">
-                <span class="w-5 h-5 rounded-full bg-brand-light flex items-center justify-center shrink-0">
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#41bdc4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="20 6 9 17 4 12"/>
-                  </svg>
-                </span>
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      <!-- Kártya 2: szöveg bal, fotó jobb -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-        <div class="flex flex-col gap-5 order-2 lg:order-1">
-          <span class="inline-flex w-fit items-center rounded-full bg-brand-light px-3 py-1 text-xs font-semibold text-brand-dark uppercase tracking-widest">
-            Módszerünk
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-normal text-gray-900 leading-snug">
-            Tudományos alap, természetes kiegészítés
-          </h2>
-          <p class="text-gray-600 leading-relaxed">
-            Hiszünk a bizonyítékokon alapuló orvoslásban, ugyanakkor nyitottak vagyunk a természet
-            adta lehetőségekre is. Rendelőinkben a modern diagnosztika és a komplementer terápiák
-            együtt alkotnak egységes gyógyítási utat — minden páciens számára egyénileg kialakítva.
-          </p>
-          <div class="grid grid-cols-2 gap-3 pt-1">
-            {['Funkcionális orvoslás', 'NLS diagnosztika', 'Fitoterápia', 'Étrend-tanácsadás'].map(tag => (
-              <span class="flex items-center gap-2 text-sm text-gray-700 bg-brand-50 rounded-xl px-4 py-2.5 border border-brand/10">
-                <span class="w-1.5 h-1.5 rounded-full bg-brand shrink-0"></span>
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-        <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden order-1 lg:order-2">
-          <img
-            src="https://images.unsplash.com/photo-1476231682828-37e571bc172f?w=900&q=80&fit=crop"
-            alt="Természetes gyógyítás"
-            class="w-full h-full object-cover"
-          />
-        </div>
-      </div>
-
+  <!-- ═══ HERO ═══ -->
+  <section class="bg-brand-50 py-20 px-4 text-center">
+    <div class="mx-auto max-w-2xl">
+      <h1 class="text-4xl md:text-5xl font-normal text-gray-900 mb-6">
+        Akik az Ön és családja egészségét kísérik
+      </h1>
+      <p class="text-lg text-gray-600 leading-relaxed">
+        Ismerje meg rendelőnk történetét, szakmai hátterét és a holisztikus gyógyítás iránti elkötelezettségünket.
+      </p>
     </div>
   </section>
 
-  <!-- ═══ CSAPAT — EMBEREK ═══ -->
+  <!-- ═══ TÖRTÉNETÜNK ═══ -->
+  <section class="py-20 px-4">
+    <div class="mx-auto max-w-3xl flex flex-col gap-10">
+      <div class="flex flex-col gap-4">
+        <span class="inline-flex items-center justify-center rounded-full bg-brand-50 border border-brand/20 px-4 py-1 text-xs font-semibold tracking-widest uppercase text-brand-dark w-fit mx-auto">
+          Történetünk
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-normal text-gray-900 leading-snug text-center">
+          Amikor a szakmai elhivatottság és a barátság találkozik
+        </h2>
+      </div>
+      <p class="text-gray-600 leading-relaxed text-lg text-center">
+        Dr. Piri Anikó és Dr. Ágoston Krisztina orvosi pályáját mindig is egy közös vonás kísérte:
+        a nyitottság a természetes és alternatív gyógymódok irányába. Történetünk Anikó rendelőjében
+        kezdődött, ahol az első találkozás alkalmával kiderült, hogy nemcsak szakmailag, de emberileg
+        is tökéletesen egy hullámhosszon vagyunk. Ebből a szakmai kapcsolódásból az évek során egy
+        töretlen, mély barátság fejlődött ki.
+      </p>
+      <p class="text-gray-500 leading-relaxed text-base text-center">
+        A rendelő ötletét Dr. Piri Anikó álmodta meg, és 2024 szeptembere óta töretlen energiával
+        építi és szépíti ezt a gyógyító teret.
+      </p>
+
+      <!-- Közös küldetés -->
+      <div class="bg-brand-50 rounded-2xl px-8 py-10 flex flex-col gap-4 text-center border border-brand/10">
+        <h3 class="text-xl font-medium text-gray-900">A mi közös küldetésünk</h3>
+        <p class="text-gray-600 leading-relaxed">
+          Nem csupán különálló orvosokként, hanem együttműködő csapatként állunk a hozzánk fordulók
+          mellett. Célunk, hogy támogassuk Önt és családját az egészség helyrehozásában, hosszú távú
+          megtartásában, valamint a krónikus betegségek tudatos megelőzésében.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CSAPAT ═══ -->
   <section class="bg-brand-50 py-24 px-4">
     <div class="mx-auto max-w-5xl flex flex-col gap-20">
 
@@ -148,99 +86,95 @@ const values = [
         <h2 class="text-3xl sm:text-4xl font-normal text-gray-900">
           A gyógyítás mögött emberek állnak
         </h2>
-        <p class="text-gray-500 leading-relaxed">
-          Rendelőnk egy csapat munkájának eredménye, ahol a tudományos precizitás találkozik az
-          emberi figyelemmel és a természetes megoldásokkal.
-        </p>
       </div>
 
-      <!-- Személy 1: fotó bal, szöveg jobb -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+      <!-- Dr. Piri Anikó — fotó bal, szöveg jobb -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
         <div class="w-full rounded-2xl overflow-hidden">
-          <div class="w-full bg-brand-light rounded-2xl flex items-center justify-center relative" style="height: 480px">
+          <div class="w-full bg-brand-light rounded-2xl flex items-center justify-center relative" style="height: 520px">
             <div class="absolute inset-0 bg-gradient-to-br from-brand/10 to-transparent rounded-2xl"></div>
             <span class="relative text-sm text-brand-dark font-medium">Fotó hamarosan</span>
           </div>
         </div>
         <div class="flex flex-col gap-6">
           <span class="inline-flex w-fit items-center rounded-full bg-white border border-brand/20 px-3 py-1 text-xs font-medium text-brand-dark">
-            Gyermekorvos · Rendelőalapító
+            Holisztikus szemléletű gyermekgyógyász
           </span>
-          <h3 class="text-2xl sm:text-3xl font-normal text-gray-900">Dr. Kovács Eszter</h3>
-          <p class="text-gray-600 leading-relaxed">
-            18 éves klinikai tapasztalattal a hátam mögött alapítottam meg a Lélekligetet. Célom
-            egy olyan centrum létrehozása volt, ahol nem csak a tüneteket kezeljük, hanem az embert
-            a maga teljességében vizsgáljuk. Hiszek abban, hogy a gyógyulás útja a bizalom és a
-            folyamatos odafigyelésen alapul.
-          </p>
+          <h3 class="text-2xl sm:text-3xl font-normal text-gray-900">Dr. Piri Anikó</h3>
           <blockquote class="border-l-4 border-brand pl-5 py-2">
             <p class="text-gray-700 italic leading-relaxed">
-              „A legfontosabb eszközöm a figyelem, a legnagyobb sikerem pedig a mosolygó páciens."
+              „Hiszem, hogy a tudás soha véget nem érő folyamat, a gyógyítás pedig akkor a leghatékonyabb, ha a tudomány és a természet kezet fog egymással."
             </p>
           </blockquote>
+          <p class="text-gray-600 leading-relaxed">
+            Dr. Piri Anikó vagyok, csecsemő- és gyermekgyógyász, háromgyermekes édesanya. Az utam során
+            a saját gyermekeimen tapasztaltam meg először azt az erőt, amit a hagyományos orvoslás és a
+            természetes gyógymódok ötvözése jelent. Felismertem, hogy a két terület egymást kiegészítve
+            sokkal nagyobb hatékonysággal működik, mint külön-külön.
+          </p>
+          <p class="text-gray-600 leading-relaxed">
+            Éveken át saját és helyettesített praxisaimban csiszoltam ezt a szemléletet, mindig a „miért?"
+            kérdést kutatva. Első álmom a dabasi Lélekliget megalapításával vált valóra — és magánrendelésem
+            keretében még szélesebb körben szeretném elérhetővé tenni a holisztikus szemléletű ellátást.
+          </p>
         </div>
       </div>
 
-      <!-- Személy 2: szöveg bal, fotó jobb -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+      <!-- Dr. Ágoston Krisztina — szöveg bal, fotó jobb -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
         <div class="flex flex-col gap-6 order-2 lg:order-1">
           <span class="inline-flex w-fit items-center rounded-full bg-white border border-brand/20 px-3 py-1 text-xs font-medium text-brand-dark">
-            Étrend-tanácsadó · NLS-szakértő
+            Holisztikus szemléletű orvos
           </span>
-          <h3 class="text-2xl sm:text-3xl font-normal text-gray-900">Táth Katalin</h3>
-          <p class="text-gray-600 leading-relaxed">
-            Személyre szabott táplálkozási tervekkel és NLS-alapú állapotfelméréssel segítem
-            pácienseinket az életmódváltás útján. Meggyőződésem, hogy a helyes táplálkozás és
-            a szervezet energetikai egyensúlya elválaszthatatlan egymástól.
-          </p>
+          <h3 class="text-2xl sm:text-3xl font-normal text-gray-900">Dr. Ágoston Krisztina</h3>
           <blockquote class="border-l-4 border-brand pl-5 py-2">
             <p class="text-gray-700 italic leading-relaxed">
-              „Minden szervezet egyedi — az étrend sem lehet sablonos."
+              „Klinikai tapasztalattal és holisztikus szemlélettel kísérem Önt a személyre szabott, természetes gyógyulás és a tudatos megelőzés útján."
             </p>
           </blockquote>
+          <p class="text-gray-600 leading-relaxed">
+            Dr. Ágoston Krisztina vagyok, kétgyermekes édesanya. Már a kórházi munkám során egyre inkább
+            azt tapasztaltam, hogy a valódi gyógyulás sokkal hatékonyabb és tartósabb, ha nem csupán
+            egy-egy kiragadott tünetet kezelünk, hanem az embert egészében nézzük — testet, lelket és
+            szellemet együtt. Elvégeztem az Új Germán Medicina és a Recall Healing képzéseit is, hogy
+            még mélyebben megérthessem a betegségek mögött húzódó összefüggéseket.
+          </p>
+          <p class="text-gray-600 leading-relaxed">
+            Nem csodát és nem csodaszert ígérek. Abban szeretnék segíteni, hogy közösen megtaláljuk a
+            problémák valódi okát. Hiszem, hogy a szervezet képes az öngyógyulásra, ha megfelelő
+            támogatást kap — én ebben szeretném kísérni és támogatni a hozzám fordulókat.
+          </p>
         </div>
         <div class="w-full rounded-2xl overflow-hidden order-1 lg:order-2">
-          <div class="w-full bg-brand-light rounded-2xl flex items-center justify-center relative" style="height: 480px">
+          <div class="w-full bg-brand-light rounded-2xl flex items-center justify-center relative" style="height: 520px">
             <div class="absolute inset-0 bg-gradient-to-br from-brand/10 to-transparent rounded-2xl"></div>
             <span class="relative text-sm text-brand-dark font-medium">Fotó hamarosan</span>
           </div>
         </div>
       </div>
 
-      <!-- 3 oszlopos csapat grid -->
+      <!-- 3 kártyás grid -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         {teamMembers.map((member) => (
-          <div class="overflow-hidden rounded-2xl shadow-sm bg-white">
+          <div class="overflow-hidden rounded-2xl shadow-sm bg-white flex flex-col">
             <div class="aspect-square w-full bg-brand-light flex items-center justify-center relative">
               <div class="absolute inset-0 bg-gradient-to-br from-brand/10 to-transparent"></div>
               <span class="relative text-sm text-brand-dark font-medium">Fotó hamarosan</span>
             </div>
-            <div class="p-6 flex flex-col gap-3">
+            <div class="p-6 flex flex-col gap-3 flex-1">
               <h3 class="text-lg font-medium text-gray-900">{member.name}</h3>
-              <span class="inline-flex w-fit items-center rounded-full bg-brand-light px-3 py-0.5 text-xs font-medium text-brand-dark">
+              <span class="inline-flex w-fit items-center rounded-full bg-brand-light px-3 py-0.5 text-xs font-medium text-brand-dark leading-tight">
                 {member.role}
               </span>
+              <blockquote class="border-l-2 border-brand/40 pl-3 mt-1">
+                <p class="text-xs text-gray-500 italic leading-relaxed">{member.quote}</p>
+              </blockquote>
               <p class="text-sm text-gray-600 leading-relaxed">{member.description}</p>
             </div>
           </div>
         ))}
       </div>
 
-    </div>
-  </section>
-
-  <!-- ═══ ÉRTÉKEK ═══ -->
-  <section class="py-20 px-4">
-    <div class="mx-auto max-w-5xl">
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        {values.map((value) => (
-          <div class="border border-gray-100 shadow-sm bg-white rounded-2xl p-8 flex flex-col gap-4">
-            <div class="w-12 h-12 rounded-xl bg-brand-light flex items-center justify-center text-brand-dark" set:html={value.icon} />
-            <h3 class="text-xl font-medium text-gray-900">{value.title}</h3>
-            <p class="text-gray-600 leading-relaxed">{value.description}</p>
-          </div>
-        ))}
-      </div>
     </div>
   </section>
 
