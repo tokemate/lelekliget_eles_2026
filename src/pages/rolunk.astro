@@ -5,18 +5,21 @@ const teamMembers = [
   {
     name: 'Petrányi Zsoltné Ildikó',
     role: 'Masszőr',
+    photo: '/images/petranyi-zsoltne-ildiko.webp',
     quote: 'Energetikai, talp- és nyirokmasszázs a test és a lélek harmóniájáért – támogassa szervezete öngyógyító folyamatait és méregtelenítését!',
     description: 'Kezeléseim során – energetikai masszázs, talpmasszázs és nyirokmasszázs – az egyensúly visszaállítását segítem, figyelemmel, jelenléttel és személyre szabott megközelítéssel. Fontos számomra, hogy minden vendégem biztonságban, elfogadásban és nyugalomban érezze magát.',
   },
   {
     name: 'Udvardi Zsuzsanna',
     role: 'Természetgyógyász, fülakupunktúrás addiktológus',
+    photo: '/images/udvardi-zsuzsanna.webp',
     quote: 'Lépjen a változás útjára: csökkentse a stresszt, győzze le a sóvárgást diszkrét fülakupunktúrával, és töltődjön fel a tiszta esszenciális illóolajok érintésével.',
     description: 'Fülakupunktúrás addiktológiával segítek csökkenteni a sóvárgást és enyhíteni a feszültséget. A doTERRA AromaTouch™ terápia során nyolcféle terápiás minőségű illóolajjal támogatom a szervezet öngyógyító folyamatait és az immunrendszert.',
   },
   {
     name: 'Czank Edina',
     role: 'Asszisztens',
+    photo: '/images/czank-edina.webp',
     quote: 'Célom, hogy kedvességgel, empátiával és szakmai odafigyeléssel támogassam pácienseinket.',
     description: 'Egészségügyi és szépségápolási végzettséggel (ápoló, kozmetikus, testkezelő) két orvos munkáját segítem asszisztensként. A holisztikus szemlélet nemcsak a munkámban, hanem a mindennapjaimban is jelen van — rendszeresen jógázom, hogy megőrizzem a harmóniát és a tudatos jelenlétet.',
   },
@@ -82,10 +85,12 @@ const teamMembers = [
       <!-- Dr. Piri Anikó — fotó bal, szöveg jobb -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
         <div class="w-full rounded-2xl overflow-hidden">
-          <div class="w-full bg-brand-light rounded-2xl flex items-center justify-center relative" style="height: 520px">
-            <div class="absolute inset-0 bg-gradient-to-br from-brand/10 to-transparent rounded-2xl"></div>
-            <span class="relative text-sm text-brand-dark font-medium">Fotó hamarosan</span>
-          </div>
+          <img
+            src="/images/dr-piri-aniko.webp"
+            alt="Dr. Piri Anikó"
+            class="w-full h-full object-cover object-top rounded-2xl"
+            style="max-height: 520px"
+          />
         </div>
         <div class="flex flex-col gap-6">
           <span class="inline-flex w-fit items-center rounded-full bg-white border border-brand/20 px-3 py-1 text-xs font-medium text-brand-dark">
@@ -137,10 +142,12 @@ const teamMembers = [
           </p>
         </div>
         <div class="w-full rounded-2xl overflow-hidden order-1 lg:order-2">
-          <div class="w-full bg-brand-light rounded-2xl flex items-center justify-center relative" style="height: 520px">
-            <div class="absolute inset-0 bg-gradient-to-br from-brand/10 to-transparent rounded-2xl"></div>
-            <span class="relative text-sm text-brand-dark font-medium">Fotó hamarosan</span>
-          </div>
+          <img
+            src="/images/dr-agoston-krisztina.webp"
+            alt="Dr. Ágoston Krisztina"
+            class="w-full h-full object-cover object-top rounded-2xl"
+            style="max-height: 520px"
+          />
         </div>
       </div>
 
@@ -148,9 +155,12 @@ const teamMembers = [
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         {teamMembers.map((member) => (
           <div class="overflow-hidden rounded-2xl shadow-sm bg-white flex flex-col">
-            <div class="aspect-square w-full bg-brand-light flex items-center justify-center relative">
-              <div class="absolute inset-0 bg-gradient-to-br from-brand/10 to-transparent"></div>
-              <span class="relative text-sm text-brand-dark font-medium">Fotó hamarosan</span>
+            <div class="aspect-square w-full overflow-hidden">
+              <img
+                src={member.photo}
+                alt={member.name}
+                class="w-full h-full object-cover object-top"
+              />
             </div>
             <div class="p-6 flex flex-col gap-3 flex-1">
               <h3 class="text-lg font-medium text-gray-900">{member.name}</h3>
