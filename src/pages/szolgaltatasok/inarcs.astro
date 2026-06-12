@@ -1,11 +1,43 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BookingCTA from '../../components/ui/BookingCTA.astro';
+
+const gyermekList = [
+  'Rendszeres csecsemő- és gyermekvizsgálatok: az egyéni fejlődési ritmust és a megelőzést előtérbe helyező szűrések.',
+  'Személyre szabott életmód-tanácsadás: szakértő támogatás a táplálkozás, a mozgás és a lelki fejlődés kérdéseiben.',
+  'Családközpontú szemlélet: partneri együttműködés és tanácsadás a szülőknek a mindennapok harmóniájáért.',
+  'Barátságos, stresszmentes környezet: ahol a kicsik biztonságban és otthonosan érezhetik magukat.',
+];
+
+const belgyList = [
+  'Oknyomozó diagnosztika: nem elégszünk meg a felszíni tünetek enyhítésével; részletes elemzéssel keressük a krónikus panaszok, fáradékonyság vagy emésztési problémák valódi kiváltó okait.',
+  'Személyre szabott, holisztikus terápia: egyedi kezelési tervet állítunk össze, amely a célzott orvosi támogatás mellett a táplálkozásra, a bélflóra helyreállítására és az életmódra is kiterjed.',
+  'Testi-lelki egyensúly és prevenció: nagy hangsúlyt fektetünk a megelőzésre és a stressz szervezetünkre gyakorolt hatásainak kezelésére, támogatva a hosszan tartó vitalitást.',
+  'Időt szánunk Önre: nálunk a vizsgálat egy alapos, rohanásmentes beszélgetéssel kezdődik, ahol a páciens áll a középpontban.',
+];
+
+const arcuregList = [
+  'Gyökeres okok feltárása: a felső légúti panaszokat nem elszigetelten, hanem a teljes szervezet és az idegrendszer összefüggéseiben vizsgáljuk a teljes gyógyulásért.',
+  'Komplex arcüreggyulladás-kezelés: visszatérő panaszok megszüntetése speciális, kíméletes vákuumos technikával (Proetz-kezelés).',
+  'Viselkedési zavarok és rejtett halláscsökkenés: kiszűrjük a háttérben meghúzódó szubklinikus hallászavarokat, amelyek a gyermekkori magatartási és figyelmi problémák mögött állhatnak.',
+  'Komplex beszédindítás: a beszédfejlődési elakadások fül-orr-gégészeti és funkcionális okainak célzott természetes kezelése.',
+  'Alvásdiagnosztika és horkolásgátlás: a horkolás okainak megszüntetése és az alvási apnoe teljes körű vizsgálata gyermekeknél és felnőtteknél.',
+  'Rohanásmentes ellátás: alapos vizsgálat és partneri odafigyelés, barátságos környezetben.',
+];
+
+const nlsList = [
+  'Non-invazív, sejtszintű állapotfelmérés: tűszúrás és sugárterhelés nélkül, elektromágneses hullámok segítségével térképezi fel a szervezet, a szervek és a sejtek pillanatnyi funkcionális állapotát.',
+  'A gyökeres okok korai felismerése: képes kimutatni az elváltozásokat még azelőtt, hogy azok fizikai tünetként vagy laboratóriumi eltérésként megjelennének.',
+  'Holisztikus összefüggések feltárása: megmutatja a gócok, a rejtett gyulladások, a környezeti terhelések (toxinok, nehézfémek) és a bélflóra egyensúlyvesztésének rendszerszintű hatásait.',
+  'Személyre szabott terápiás támogatás: segít pontosan meghatározni, hogy a páciens szervezetének milyen vitaminokra, nyomelemekre vagy egyéni életmódváltásra van szüksége.',
+  'Gyermek- és felnőttbarát technológia: teljesen fájdalom- és stresszmentes (egy speciális fejhallgató segítségével zajlik), kisgyermekeknél is kiválóan alkalmazható.',
+  'Azonnali, vizuális eredmények: a vizsgálat során a páciens a monitoron, 3D-s grafikonokon keresztül azonnal láthatja a teste energetikai és funkcionális visszajelzéseit.',
+];
 ---
 
 <BaseLayout
   title="Inárcsi Magánrendelő | Lélekliget"
-  description="Gyermekgyógyászat, funkcionális orvoslás és holisztikus kiegészítő terápiák természetközeli környezetben, Inárcson."
+  description="Általános orvosi rendelés, alternatív diagnosztika és terápia, fókuszban az arcüreggyulladással. Természetközeli helyszín, ingyenes parkoló, könnyen megközelíthető az M5-ről."
 >
 
   <!-- ═══ HERO ═══ -->
@@ -16,14 +48,13 @@ import BookingCTA from '../../components/ui/BookingCTA.astro';
     <div class="absolute inset-0 bg-black/55"></div>
     <div class="relative z-10 flex flex-col items-center gap-7 max-w-3xl px-4 sm:px-6">
       <span class="inline-flex items-center rounded-full border border-white/25 bg-black/30 backdrop-blur-sm px-5 py-1.5 text-[11px] font-semibold tracking-widest text-white/90 uppercase">
-        Hamarosan nyílik – 2026. május
+        Megnyitottunk!
       </span>
       <h1 class="font-heading text-5xl sm:text-6xl lg:text-7xl font-normal text-white leading-tight">
         Inárcsi Magánrendelő
       </h1>
-      <p class="text-base sm:text-lg text-white/70 leading-relaxed max-w-xl">
-        Csendes, természetközeli környezetben, modern technológiával és szakértelemmel várjuk
-        pácienseinket. Ahol a gyógyítás és a nyugalom találkozik.
+      <p class="text-base sm:text-lg text-white/70 leading-relaxed max-w-2xl">
+        Általános orvosi rendelés, alternatív diagnosztika és terápia, fókuszban az arcüreggyulladással — természetközeli inárcsi helyszínünkön az egész család számára. Ingyenes parkolási lehetőség. Könnyű megközelíthetőség az M5 autópálya felől.
       </p>
       <div class="flex flex-col sm:flex-row gap-3 mt-2">
         <a
@@ -50,21 +81,14 @@ import BookingCTA from '../../components/ui/BookingCTA.astro';
   <!-- ═══ GYERMEKGYÓGYÁSZAT ═══ -->
   <section id="szolgaltatasok" class="py-20 px-4">
     <div class="max-w-5xl mx-auto">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
         <div class="flex flex-col gap-6">
-          <h2 class="text-3xl font-normal text-gray-900">A gyerek egészségére figyelünk</h2>
-          <p class="text-gray-600 leading-relaxed">
-            Speciális gyermekgyógyászati ellátásunk során a legkisebbeknek test és lelki fejlődését
-            kísérjük figyelemmel szakértő kezekben. Barátságos, otthonos környezetben, ahol a
-            gyerekek is jól érzik magukat.
-          </p>
-          <ul class="flex flex-col gap-3">
-            {[
-              'Rendszeres csecsemő- és gyermekvizsgálatok',
-              'Szakértő tanácsadás táplálkozás és fejlődés kérdéseiben',
-              'Barátságos, stresszmenetes környezet a kicsiknek',
-            ].map(item => (
+          <span class="inline-flex w-fit items-center rounded-full bg-brand-50 border border-brand/20 px-3 py-1 text-xs font-semibold tracking-widest uppercase text-brand-dark">
+            Gyermekgyógyászat
+          </span>
+          <h2 class="text-3xl font-normal text-gray-900">A gyerek egészségére figyelünk – a legteljesebb értelemben</h2>
+          <ul class="flex flex-col gap-4">
+            {gyermekList.map(item => (
               <li class="flex items-start gap-3">
                 <span class="shrink-0 w-5 h-5 rounded-full bg-brand-light flex items-center justify-center mt-0.5">
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#41bdc4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
@@ -76,74 +100,100 @@ import BookingCTA from '../../components/ui/BookingCTA.astro';
             ))}
           </ul>
         </div>
-
         <div class="w-full aspect-[4/3] bg-brand-light rounded-2xl flex items-center justify-center relative">
           <div class="absolute inset-0 bg-gradient-to-br from-brand/10 to-transparent rounded-2xl"></div>
           <span class="relative text-sm text-brand-dark font-medium">Fotó hamarosan</span>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ═══ FUNKCIONÁLIS ORVOSLÁS ═══ -->
+  <!-- ═══ FUNKCIONÁLIS BELGYÓGYÁSZAT ═══ -->
   <section class="bg-brand-50 py-20 px-4">
     <div class="max-w-5xl mx-auto">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
         <div class="w-full aspect-[4/3] bg-brand-light rounded-2xl flex items-center justify-center relative order-2 lg:order-1">
           <div class="absolute inset-0 bg-gradient-to-br from-brand/10 to-transparent rounded-2xl"></div>
           <span class="relative text-sm text-brand-dark font-medium">Fotó hamarosan</span>
         </div>
-
         <div class="flex flex-col gap-6 order-1 lg:order-2">
-          <h2 class="text-3xl font-normal text-gray-900">
-            Amikor a szokásos vizsgálatok nem adnak választ
-          </h2>
-          <p class="text-gray-600 leading-relaxed">
-            A funkcionális orvoslás az egyént egységként kezeli, keresve a tünetek mögötti
-            meghatározó gyökérokokra és anyagcsere-folyamatokra. Részletes laborvizsgálatokkal
-            és személyre szabott kezelési tervvel dolgozunk.
-          </p>
-          <div class="grid grid-cols-2 gap-3">
-            {['Anyagcsere-analízis', 'Személyre szabott terv', 'Részletes laborvizsgálatok', 'Étrend-tanácsadás'].map(tag => (
-              <span class="flex items-center justify-center text-center border border-brand/30 text-brand bg-white text-xs font-medium px-3 py-2.5 rounded-xl leading-tight">
-                {tag}
-              </span>
+          <span class="inline-flex w-fit items-center rounded-full bg-white border border-brand/20 px-3 py-1 text-xs font-semibold tracking-widest uppercase text-brand-dark">
+            Funkcionális belgyógyászat
+          </span>
+          <h2 class="text-3xl font-normal text-gray-900">A valódi okok nyomában – egészség tüneti kezelések nélkül</h2>
+          <ul class="flex flex-col gap-4">
+            {belgyList.map(item => (
+              <li class="flex items-start gap-3">
+                <span class="shrink-0 w-5 h-5 rounded-full bg-brand-light flex items-center justify-center mt-0.5">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#41bdc4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </span>
+                <span class="text-gray-700 text-sm leading-relaxed">{item}</span>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- ═══ ARCÜREGGYULLADÁS ═══ -->
+  <section class="py-20 px-4">
+    <div class="max-w-5xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div class="flex flex-col gap-6">
+          <span class="inline-flex w-fit items-center rounded-full bg-brand-50 border border-brand/20 px-3 py-1 text-xs font-semibold tracking-widest uppercase text-brand-dark">
+            Arcüreggyulladás
+          </span>
+          <h2 class="text-3xl font-normal text-gray-900">Arcüregi panaszok komplex kezelése</h2>
+          <ul class="flex flex-col gap-4">
+            {arcuregList.map(item => (
+              <li class="flex items-start gap-3">
+                <span class="shrink-0 w-5 h-5 rounded-full bg-brand-light flex items-center justify-center mt-0.5">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#41bdc4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </span>
+                <span class="text-gray-700 text-sm leading-relaxed">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="w-full aspect-[4/3] bg-brand-light rounded-2xl flex items-center justify-center relative">
+          <div class="absolute inset-0 bg-gradient-to-br from-brand/10 to-transparent rounded-2xl"></div>
+          <span class="relative text-sm text-brand-dark font-medium">Fotó hamarosan</span>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ═══ NLS DIAGNOSZTIKA ═══ -->
-  <section class="py-20 px-4">
+  <section class="bg-brand-50 py-20 px-4">
     <div class="max-w-5xl mx-auto">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-
-        <div class="flex flex-col gap-6">
-          <h2 class="text-3xl font-normal text-gray-900">
-            Nem invazív diagnosztika a mélységekből
-          </h2>
-          <p class="text-gray-600 leading-relaxed">
-            Az NLS (Non-Lineáris Szisztéma) mérés lehetővé teszi a szervezet finom energetikai
-            eltéréseinek feltérképezését fájdalommentesen. Korai jelzések, amelyek megelőzik a
-            tünetek kialakulását.
-          </p>
-          <blockquote class="border-l-4 border-brand pl-5 py-2">
-            <p class="text-gray-700 italic leading-relaxed text-sm">
-              „A prevenció alapja a korai felismerés, ahol a technológia segít belátni a láthatatlamba."
-            </p>
-          </blockquote>
-        </div>
-
-        <div class="w-full aspect-[4/3] bg-brand-light rounded-2xl flex items-center justify-center relative">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div class="w-full aspect-[4/3] bg-brand-light rounded-2xl flex items-center justify-center relative order-2 lg:order-1">
           <div class="absolute inset-0 bg-gradient-to-br from-brand/10 to-transparent rounded-2xl"></div>
           <span class="relative text-sm text-brand-dark font-medium">Fotó hamarosan</span>
         </div>
-
+        <div class="flex flex-col gap-6 order-1 lg:order-2">
+          <span class="inline-flex w-fit items-center rounded-full bg-white border border-brand/20 px-3 py-1 text-xs font-semibold tracking-widest uppercase text-brand-dark">
+            NLS technológia
+          </span>
+          <h2 class="text-3xl font-normal text-gray-900">Non-invazív, sejtszintű állapotfelmérés</h2>
+          <ul class="flex flex-col gap-4">
+            {nlsList.map(item => (
+              <li class="flex items-start gap-3">
+                <span class="shrink-0 w-5 h-5 rounded-full bg-brand-light flex items-center justify-center mt-0.5">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#41bdc4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </span>
+                <span class="text-gray-700 text-sm leading-relaxed">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -152,14 +202,13 @@ import BookingCTA from '../../components/ui/BookingCTA.astro';
   <section class="bg-gray-50 py-20 px-4">
     <div class="max-w-3xl mx-auto text-center flex flex-col items-center gap-8">
       <h2 class="text-3xl font-normal text-gray-900">
-        Holisztikus szemléletű kiegészítő terápiák
+        Kiegészítő terápiák
       </h2>
       <p class="text-gray-600 leading-relaxed">
-        Inárcsi rendelőnkben nemcsak tüneteket kezelünk, hanem támogatjuk a test öngyógyító
-        folyamatát speciális wellness és energetikai kezelésekkel.
+        Inárcsi rendelőnkben a hagyományos és alternatív módszerek egyaránt elérhetők, támogatva a test öngyógyító folyamatait.
       </p>
       <div class="flex flex-wrap justify-center gap-3">
-        {['Fitoterápia', 'Stresszkezelés', 'Életmód-tanácsadás', 'Homeopátia'].map(tag => (
+        {['Masszázs', 'Akupunktúra', 'Energiagyógyászat', 'BEMER terápia', 'Esszenciális olajok', 'Családállítás', 'Csontkovács'].map(tag => (
           <span class="inline-flex items-center border border-brand text-brand text-sm font-medium px-5 py-2 rounded-full">
             {tag}
           </span>
@@ -171,7 +220,7 @@ import BookingCTA from '../../components/ui/BookingCTA.astro';
     </div>
   </section>
 
-  <!-- ═══ SZOLGÁLTATÁSOK ═══ -->
+  <!-- ═══ SZOLGÁLTATÁSOK KÁRTYÁK ═══ -->
   <section class="py-20 px-4 bg-gray-50">
     <div class="max-w-5xl mx-auto">
       <div class="text-center mb-12">
@@ -181,22 +230,25 @@ import BookingCTA from '../../components/ui/BookingCTA.astro';
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
         {[
           {
-            title: 'Gyermekgyógyászat',
-            description: 'Átfogó ellátás a legkisebbeknek, a prevenciótól az akut betegségek szakszerű kezeléséig. Rendszeres szűrővizsgálatok és fejlődéskísérés.',
+            title: 'Funkcionális Gyermekgyógyászat',
+            description: 'A várandósságtól kezdődően prevenciós tanácsadás, ellátás a legkisebbeknek, holisztikus szemléletű tanácsadás és terápia.',
             priceLabel: 'Konzultációs díj',
-            price: '18 000',
+            price: '35 000',
+            priceNote: 'Ft / 30 perc',
           },
           {
-            title: 'Funkcionális orvoslás',
-            description: 'A tünetek mögötti gyökérokokra fókuszálunk. Részletes laborvizsgálatok, anyagcsere-analízis és személyre szabott kezelési terv.',
+            title: 'Funkcionális Belgyógyászat',
+            description: 'Teljes körű belgyógyászati vizsgálat, okfeltárás a gyökerektől, holisztikus kezelési terv az Ön egészsége érdekében.',
             priceLabel: 'Konzultációs díj',
-            price: '25 000',
+            price: '35 000',
+            priceNote: 'Ft / 30 perc',
           },
           {
             title: 'Kiegészítő terápiák',
-            description: 'Fitoterápia, homeopátia, stresszkezelés és energetikai kezelések a test öngyógyító folyamatainak támogatásához.',
+            description: 'Masszázs, akupunktúra, energiagyógyászat, BEMER terápia, esszenciális olajok, családállítás, csontkovács.',
             priceLabel: 'Kezelési díj',
-            price: '15 000',
+            price: '–',
+            priceNote: '',
           },
         ].map((s) => (
           <a
@@ -213,7 +265,8 @@ import BookingCTA from '../../components/ui/BookingCTA.astro';
                 <span class="text-[11px] font-semibold uppercase tracking-widest text-gray-400">{s.priceLabel}</span>
                 <div class="flex items-baseline gap-1.5">
                   <span class="text-xl font-semibold text-brand leading-none">{s.price}</span>
-                  <span class="text-sm text-gray-400">Ft / alkalom</span>
+                  {s.priceNote && <span class="text-sm text-gray-400">{s.priceNote}</span>}
+                  {!s.priceNote && s.price === '–' && <span class="text-sm text-gray-400">Hamarosan</span>}
                 </div>
               </div>
               <span class="inline-flex items-center gap-1 text-sm font-medium text-brand shrink-0">
@@ -229,10 +282,10 @@ import BookingCTA from '../../components/ui/BookingCTA.astro';
     </div>
   </section>
 
-  <!-- ═══ CTA NAPTÁRRAL ═══ -->
+  <!-- ═══ CTA ═══ -->
   <BookingCTA
     title="Foglaljon időpontot az inárcsi rendelőbe"
-    description="Válassza ki az Önnek megfelelő időpontot, vagy hívja asszisztensünket. Örömmel várjuk Önt és gyermekét."
+    description="Várjuk Önt és gyermekét természetközeli, barátságos környezetünkben. Ingyenes parkoló, könnyű megközelíthetőség az M5-ről."
   />
 
 </BaseLayout>
