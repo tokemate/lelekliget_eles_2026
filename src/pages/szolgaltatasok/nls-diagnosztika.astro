@@ -1,0 +1,102 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BookingCTA from '../../components/ui/BookingCTA.astro';
+
+const items = [
+  'Non-invazív, sejtszintű állapotfelmérés: tűszúrás és sugárterhelés nélkül, elektromágneses hullámok segítségével térképezi fel a szervezet, a szervek és a sejtek pillanatnyi funkcionális állapotát.',
+  'A gyökeres okok korai felismerése: képes kimutatni az elváltozásokat még azelőtt, hogy azok fizikai tünetként vagy laboratóriumi eltérésként megjelennének, így a prevenció (megelőzés) legerősebb eszköze.',
+  'Holisztikus összefüggések feltárása: nemcsak egy szervet néz, hanem megmutatja a gócok, a rejtett gyulladások, a környezeti terhelések (toxinok, nehézfémek) és a bélflóra egyensúlyvesztésének rendszerszintű hatásait.',
+  'Személyre szabott terápiás támogatás: segít pontosan meghatározni, hogy a páciens szervezetének milyen vitaminokra, nyomelemekre vagy egyéni életmódváltásra van szüksége a belső egyensúly visszaállításához.',
+  'Gyermek- és felnőttbarát technológia: teljesen fájdalom- és stresszmentes (egy speciális fejhallgató segítségével zajlik), így kisgyermekeknél is kiválóan alkalmazható a beszédindítás, magatartászavarok vagy allergiák hátterének kutatására.',
+  'Azonnali, vizuális eredmények: a vizsgálat során a páciens (és a szülő) a monitoron, 3D-s grafikonokon keresztül, azonnal láthatja a teste energetikai és funkcionális visszajelzéseit.',
+];
+---
+
+<BaseLayout
+  title="NLS Diagnosztika | Lélekliget"
+  description="Non-invazív teljes test energetikai állapotfelmérés a szervezet információs mezőinek elemzésével. Korai felismerés fájdalom nélkül. Orvosi holisztikus tanácsadás és kezelési terv."
+>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="bg-brand-50 py-20 px-4 text-center">
+    <div class="mx-auto max-w-2xl flex flex-col items-center gap-5">
+      <div class="flex items-center gap-2 flex-wrap justify-center">
+        <span class="inline-flex items-center rounded-full bg-white border border-brand/20 px-3 py-1 text-xs font-medium text-brand-dark">
+          Dabas & Inárcs
+        </span>
+        <span class="inline-flex items-center rounded-full bg-brand-light border border-brand/20 px-3 py-1 text-xs font-semibold text-brand-dark">
+          45 000 Ft / 90 perc
+        </span>
+      </div>
+      <h1 class="text-4xl md:text-5xl font-normal text-gray-900">
+        NLS Diagnosztika
+      </h1>
+      <p class="text-lg text-gray-600 leading-relaxed max-w-xl">
+        Non-invazív teljes test energetikai állapotfelmérés a szervezet információs mezőinek elemzésével. Korai felismerés fájdalom nélkül. Orvosi holisztikus tanácsadás és kezelési terv.
+      </p>
+      <a
+        href="/idopontfoglalas"
+        class="inline-flex items-center gap-2 rounded-full bg-brand hover:bg-brand-dark text-white px-8 py-3 text-sm font-semibold transition-colors shadow-md shadow-brand/20"
+      >
+        Időpontot foglalok →
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══ TARTALOM ═══ -->
+  <section class="py-20 px-4">
+    <div class="max-w-3xl mx-auto flex flex-col gap-10">
+      <div class="flex flex-col gap-4">
+        <span class="inline-flex w-fit items-center rounded-full bg-brand-50 border border-brand/20 px-3 py-1 text-xs font-semibold tracking-widest uppercase text-brand-dark">
+          NLS technológia
+        </span>
+        <h2 class="text-3xl font-normal text-gray-900">
+          Non-invazív, sejtszintű állapotfelmérés
+        </h2>
+        <p class="text-gray-600 leading-relaxed">
+          Az NLS (Non-Linear System) mérés korszerű, fájdalommentes technológia, amely lehetővé
+          teszi a szervezet funkcionális állapotának feltérképezését. Segítségével még azelőtt
+          felismerjük az egyensúlytalanságokat, hogy azok fizikai tünetekké válnának.
+        </p>
+      </div>
+      <ul class="flex flex-col gap-5">
+        {items.map(item => (
+          <li class="flex items-start gap-4">
+            <span class="shrink-0 w-6 h-6 rounded-full bg-brand-light flex items-center justify-center mt-0.5">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#41bdc4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </span>
+            <span class="text-gray-700 leading-relaxed">{item}</span>
+          </li>
+        ))}
+      </ul>
+
+      <!-- Helyszín kártyák -->
+      <div class="grid sm:grid-cols-2 gap-4">
+        {[
+          { name: 'Lélekliget Gyógycentrum – Inárcs magánrendelés', address: '2365 Inárcs, Kastély u. 4.' },
+          { name: 'Lélekliget Dabas', address: '2370 Dabas, Vörösmarty u. 3. emelet' },
+        ].map(loc => (
+          <div class="bg-brand-50 rounded-2xl p-6 flex flex-col gap-2 border border-brand/10">
+            <div class="flex items-start gap-2 text-gray-700">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#41bdc4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-0.5">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+              </svg>
+              <div>
+                <p class="font-medium text-sm">{loc.name}</p>
+                <p class="text-xs text-gray-500 mt-0.5">{loc.address}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <BookingCTA
+    title="Foglaljon NLS vizsgálatot"
+    description="Modern, non-invazív teljes test állapotfelmérés a szervezet információs mezőinek elemzésével. Elérhető mindkét helyszínünkön."
+  />
+
+</BaseLayout>
