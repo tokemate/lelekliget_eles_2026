@@ -5,7 +5,7 @@
 - **Framework:** Astro 4
 - **CSS:** Tailwind CSS 3 (`tailwind.config.mjs`)
 - **CMS:** Decap CMS (`public/admin/`) — blog tartalomkezelés
-- **Hosting:** Netlify (`netlify.toml`)
+- **Hosting:** Vercel
 - **Foglalórendszer:** SimplyBook.me embed (`src/pages/idopontfoglalas.astro`)
 
 ## Könyvtárstruktúra
@@ -40,4 +40,4 @@ public/
 
 - Commit és push minden feladat után
 - `npm run build` kötelező commit előtt
-- Netlify automatikusan deploy-ol a `main` branch-ről
+- Vercel automatikusan deploy-ol a `main` branch-ről
