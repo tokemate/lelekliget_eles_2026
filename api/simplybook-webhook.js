@@ -1,40 +1,64 @@
-const QLICK_API_URL = 'https://tn25x6zc4i1.qlickcrm.com/api/v2/contact';
+const SIMPLYBOOK_API = 'https://user-api.simplybook.it/admin/';
+const QLICK_API_URL  = 'https://tn25x6zc4i1.qlickcrm.com/api/v2/contact';
 const QLICK_DEFAULTS = { language_id: 1, currency_id: 1, taxrate_id: 1 };
 
-function extractClient(body) {
-  // SimplyBook sends different shapes depending on event type
-  const c = body.client || body.booking?.client || body.data?.client || body;
-  const fullName = (c.name || c.client_name || '').trim();
-  const parts = fullName.split(/\s+/);
+async function simplybookRpc(method, params, token) {
+  const headers = { 'Content-Type': 'application/json' };
+  if (token) {
+    headers['X-Company-Login'] = process.env.SIMPLYBOOK_COMPANY;
+    headers['X-User-Token']    = token;
+  }
+  const res = await fetch(SIMPLYBOOK_API, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({ jsonrpc: '1.1', method, params, id: 1 }),
+  });
+  const json = await res.json();
+  return json.result;
+}
+
+async function getSimplybookToken() {
+  return simplybookRpc('getToken', [
+    process.env.SIMPLYBOOK_COMPANY,
+    process.env.SIMPLYBOOK_API_KEY,
+    process.env.SIMPLYBOOK_SECRET_KEY,
+  ]);
+}
+
+async function getBookingClient(bookingId, token) {
+  const booking = await simplybookRpc('getBooking', [bookingId], token);
+  if (!booking) return null;
+
+  const clientId = booking.client_id || booking.clientId;
+  const client   = await simplybookRpc('getClientInfo', [clientId], token);
 
   return {
-    firstname: c.firstname || c.client_firstname || parts[0] || 'Ismeretlen',
-    lastname:  c.lastname  || c.client_lastname  || parts.slice(1).join(' ') || '-',
-    email:     c.email     || c.client_email     || null,
-    phone:     c.phone     || c.client_phone     || null,
+    firstname: client?.name?.split(' ')[0] || booking.client_name?.split(' ')[0] || 'Ismeretlen',
+    lastname:  client?.name?.split(' ').slice(1).join(' ') || booking.client_name?.split(' ').slice(1).join(' ') || '-',
+    email:     client?.email || null,
+    phone:     client?.phone || null,
   };
 }
 
 async function createQlickContact(client) {
   const payload = {
     contact_type: 'person',
-    firstname: client.firstname,
-    lastname:  client.lastname,
+    firstname:    client.firstname,
+    lastname:     client.lastname,
     ...QLICK_DEFAULTS,
     ...(client.email ? { emails: [{ email: client.email }] } : {}),
-    ...(client.phone ? { phonenumbers: [client.phone] } : {}),
+    ...(client.phone ? { phonenumbers: [client.phone] }      : {}),
   };
 
   const res = await fetch(QLICK_API_URL, {
     method: 'POST',
     headers: {
-      AuthToken: process.env.QLICK_API_KEY,
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
+      AuthToken:        process.env.QLICK_API_KEY,
+      'Content-Type':   'application/json',
+      Accept:           'application/json',
     },
     body: JSON.stringify(payload),
   });
-
   return res.json();
 }
 
@@ -43,30 +67,29 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const body = req.body;
-  const event = body.notification_type || body.event || body.type || 'booking_created';
+  const { booking_id, notification_type } = req.body;
 
-  // Új foglalás → új kontakt
-  if (/creat|new|add/i.test(event)) {
-    const client = extractClient(body);
-    const result = await createQlickContact(client);
-    return res.status(200).json({ action: 'created', qlick: result });
+  // Törlés/lemondás → kontakt megmarad, nem csinálunk semmit
+  if (notification_type === 'cancel') {
+    return res.status(200).json({ action: 'skipped', reason: 'cancellation' });
   }
 
-  // Módosítás → kontakt adatok frissítése (ugyanúgy: POST /v2/contact, Qlick idempotens az e-mail alapján)
-  if (/modif|updat|chang/i.test(event)) {
-    const client = extractClient(body);
-    const result = await createQlickContact(client);
-    return res.status(200).json({ action: 'updated', qlick: result });
+  // Új foglalás vagy módosítás → kontakt létrehozása / frissítése
+  if (notification_type === 'create' || notification_type === 'change' || notification_type === 'notify') {
+    try {
+      const token  = await getSimplybookToken();
+      const client = await getBookingClient(booking_id, token);
+
+      if (!client) {
+        return res.status(200).json({ action: 'skipped', reason: 'no client data' });
+      }
+
+      const result = await createQlickContact(client);
+      return res.status(200).json({ action: notification_type, qlick: result });
+    } catch (err) {
+      return res.status(500).json({ error: err.message });
+    }
   }
 
-  // Törlés → nem csinálunk semmit, a kontakt marad a CRM-ben
-  if (/cancel|delet/i.test(event)) {
-    return res.status(200).json({ action: 'skipped', reason: 'cancellation ignored' });
-  }
-
-  // Ismeretlen event → kontakt létrehozása biztonságból
-  const client = extractClient(body);
-  const result = await createQlickContact(client);
-  return res.status(200).json({ action: 'created_fallback', qlick: result });
+  return res.status(200).json({ action: 'skipped', reason: 'unknown event' });
 }
