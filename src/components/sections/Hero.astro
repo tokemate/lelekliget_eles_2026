@@ -3,41 +3,51 @@
 
 <section class="min-h-screen flex flex-col lg:flex-row">
 
-  <!-- Bal panel: logó + szöveg -->
-  <div class="lg:w-[44%] flex flex-col justify-center px-8 sm:px-12 lg:px-16 py-20 bg-brand-50 order-2 lg:order-1">
-
+  <!-- Bal panel: 20% — csak logó -->
+  <div class="lg:w-[20%] flex items-center justify-center px-6 py-12 lg:py-0 bg-brand-50 order-2 lg:order-1">
     <img
       src="/logó_png-removebg-preview.png"
       alt="Lélekliget Gyógycentrum"
-      class="h-32 sm:h-40 w-auto mb-10 self-start"
+      class="w-full max-w-[120px] lg:max-w-full h-auto"
     />
-
-    <h1 class="font-heading text-4xl sm:text-5xl font-normal text-gray-900 leading-tight mb-5">
-      Személyre szabott út<br />az egészséghez
-    </h1>
-
-    <p class="text-base text-gray-600 leading-relaxed mb-3 max-w-md">
-      Lépjen a tudatos életmód és a megelőzés útjára: gyógyuljon a modern tudomány és a természet tökéletes ötvözetével!
-    </p>
-
-    <p class="text-sm text-gray-500 leading-relaxed mb-10 max-w-md">
-      Belgyógyászati és gyermekgyógyászati magánrendelés Inárcson és Dabason. Holisztikus szemlélettel, hagyományos és alternatív vizsgálatokkal, kiegészítő terápiákkal.
-    </p>
-
-    <a
-      href="/idopontfoglalas"
-      class="inline-flex items-center justify-center gap-2 rounded-full bg-brand hover:bg-brand-dark text-white shadow-lg shadow-brand/30 px-10 py-4 text-base font-semibold tracking-wide transition-colors w-fit"
-    >
-      Időpontot foglalok →
-    </a>
   </div>
 
-  <!-- Jobb panel: természetkép -->
+  <!-- Jobb panel: 80% — kép + szöveg overlay -->
   <div
-    class="lg:flex-1 min-h-[55vw] sm:min-h-[60vw] lg:min-h-0 bg-cover bg-center order-1 lg:order-2"
-    style="background-image: url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=1920&q=80&fit=crop');"
-    role="img"
-    aria-label="Természeti háttérkép"
-  ></div>
+    class="relative lg:flex-1 min-h-[70vh] lg:min-h-screen bg-cover bg-center order-1 lg:order-2"
+    style="background-image: url('/images/hero-fa.webp');"
+  >
+    <!-- Sötét overlay -->
+    <div class="absolute inset-0 bg-black/50"></div>
+
+    <!-- Tartalom -->
+    <div class="relative z-10 h-full flex flex-col justify-center px-8 sm:px-14 lg:px-20 py-20">
+      <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-normal text-white leading-tight mb-6 max-w-2xl">
+        Személyre szabott út<br />az egészséghez
+      </h1>
+
+      <p class="text-base sm:text-lg text-white/85 leading-relaxed mb-4 max-w-xl">
+        Lépjen a tudatos életmód és a megelőzés útjára: gyógyuljon a modern tudomány és a természet tökéletes ötvözetével!
+      </p>
+
+      <p class="text-sm text-white/65 leading-relaxed mb-10 max-w-xl">
+        Belgyógyászati és gyermekgyógyászati magánrendelés Inárcson és Dabason. Holisztikus szemlélettel, hagyományos és alternatív vizsgálatokkal, kiegészítő terápiákkal.
+      </p>
+
+      <a
+        href="/idopontfoglalas"
+        class="inline-flex items-center justify-center gap-2 rounded-full bg-brand hover:bg-brand-dark text-white shadow-lg shadow-brand/30 px-10 py-4 text-base font-semibold tracking-wide transition-colors w-fit"
+      >
+        Időpontot foglalok →
+      </a>
+    </div>
+
+    <!-- Lefelé nyíl -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce hidden lg:block">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-opacity="0.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </div>
+  </div>
 
 </section>
