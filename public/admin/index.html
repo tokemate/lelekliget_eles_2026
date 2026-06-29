@@ -6,7 +6,7 @@
     <meta name="robots" content="noindex" />
     <title>Tartalom kezelés | Lélekliget</title>
     <style>
-      #cms-debug{position:fixed;bottom:0;left:0;right:0;background:#1e1e1e;color:#0f0;font:11px monospace;padding:8px 12px;z-index:99999;max-height:160px;overflow-y:auto;display:none}
+      #cms-debug{position:fixed;bottom:0;left:0;right:0;background:#1e1e1e;color:#0f0;font:11px monospace;padding:8px 12px;z-index:99999;max-height:200px;overflow-y:auto;display:none}
     </style>
     <script>
       var dbg = null;
@@ -16,44 +16,80 @@
         console.log('[CMS]', msg);
       }
 
-      // Intercept window.addEventListener so we can see when Decap CMS attaches
-      // its own message listener (happens when user clicks "Login with GitHub")
-      var _cmsListenerCount = 0;
-      var _origAEL = window.addEventListener.bind(window);
-      var _origREL = window.removeEventListener.bind(window);
+      // 1) console.error / warn elfogás
+      var _oErr = console.error.bind(console);
+      console.error = function() {
+        var s = Array.from(arguments).map(function(a){
+          return (a && a.message) ? a.message : (typeof a==='object'?JSON.stringify(a):String(a));
+        }).join(' ').substring(0,200);
+        cmsLog('ERR: '+s);
+        return _oErr.apply(console, arguments);
+      };
+      var _oWarn = console.warn.bind(console);
+      console.warn = function() {
+        var s = Array.from(arguments).map(function(a){
+          return typeof a==='object'?JSON.stringify(a):String(a);
+        }).join(' ').substring(0,200);
+        cmsLog('WARN: '+s);
+        return _oWarn.apply(console, arguments);
+      };
+
+      // 2) fetch elfogás – minden github.com és /api/ hívás
+      var _oFetch = window.fetch;
+      window.fetch = function(url, opts) {
+        var u = typeof url === 'string' ? url : (url&&url.url)||'?';
+        var short = u.replace('https://','').substring(0,90);
+        if (u.indexOf('github') >= 0 || u.indexOf('/api/') >= 0) {
+          cmsLog('FETCH → '+short);
+        }
+        return _oFetch.apply(window, arguments).then(function(res) {
+          if (u.indexOf('github') >= 0 || u.indexOf('/api/') >= 0) {
+            cmsLog('FETCH ← '+res.status+' '+short.substring(0,70));
+            if (!res.ok) {
+              res.clone().text().then(function(t){ cmsLog('BODY: '+t.substring(0,120)); });
+            }
+          }
+          return res;
+        }, function(err) {
+          cmsLog('FETCH ERR: '+err.message+' '+short.substring(0,50));
+          throw err;
+        });
+      };
+
+      // 3) message listener interceptor (WeakMap-alapú, helyes remove)
+      var _fnMap = new WeakMap();
+      var _cnt = 0;
+      var _oAEL = window.addEventListener.bind(window);
+      var _oREL = window.removeEventListener.bind(window);
       window.addEventListener = function(type, fn, opts) {
-        if (type === 'message') {
-          _cmsListenerCount++;
-          var idx = _cmsListenerCount;
-          cmsLog('[HOOK] message listener #' + idx + ' added');
-          var wrapped = function(e) {
+        if (type === 'message' && fn) {
+          _cnt++;
+          var idx = _cnt;
+          cmsLog('[L] #'+idx+' added');
+          var w = function(e) {
             if (typeof e.data === 'string' && e.data.indexOf('authorization:') === 0) {
-              cmsLog('[HOOK] listener #' + idx + ' kapta: origin=' + e.origin + ' data=' + e.data.substring(0, 80));
+              cmsLog('[L] #'+idx+' KAPTA AUTH origin='+e.origin);
             }
             return fn.apply(this, arguments);
           };
-          wrapped._orig = fn;
-          return _origAEL(type, wrapped, opts);
+          _fnMap.set(fn, w);
+          return _oAEL(type, w, opts);
         }
-        return _origAEL(type, fn, opts);
+        return _oAEL(type, fn, opts);
       };
       window.removeEventListener = function(type, fn, opts) {
-        if (type === 'message') {
-          cmsLog('[HOOK] message listener eltávolítva');
+        if (type === 'message' && fn) {
+          cmsLog('[L] removed');
+          var w = _fnMap.get(fn);
+          if (w) { _fnMap.delete(fn); return _oREL(type, w, opts); }
         }
-        return _origREL(type, fn, opts);
+        return _oREL(type, fn, opts);
       };
 
-      // Our own listener — logs ALL incoming messages (filter noise)
-      _origAEL('message', function(e) {
-        var d = typeof e.data === 'string' ? e.data.substring(0, 120) : JSON.stringify(e.data).substring(0, 60);
-        // Skip Wappalyzer and other browser-extension noise
-        if (typeof e.data === 'string' && (e.data.indexOf('authorization:') === 0 || e.data.indexOf('decap') >= 0)) {
-          cmsLog('MSG origin=' + e.origin + ' data=' + d);
-        } else if (typeof e.data !== 'string') {
-          // skip non-string messages (React DevTools, Wappalyzer, etc.)
-        } else {
-          cmsLog('MSG origin=' + e.origin + ' data=' + d);
+      // 4) saját listener – auth üzenet figyelés
+      _oAEL('message', function(e) {
+        if (typeof e.data === 'string' && e.data.indexOf('authorization:') === 0) {
+          cmsLog('MSG AUTH origin='+e.origin+' data='+e.data.substring(0,100));
         }
       }, false);
 
@@ -97,9 +133,8 @@
           ],
         },
       });
-      console.log('[CMS DEBUG] CMS.init() meghívva');
       } catch(err) {
-        console.error('[CMS DEBUG] CMS.init() hiba:', err);
+        cmsLog('INIT ERR: '+err.message);
       }
     </script>
   </body>
