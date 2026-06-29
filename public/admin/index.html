@@ -6,7 +6,7 @@
     <meta name="robots" content="noindex" />
     <title>Tartalom kezelés | Lélekliget</title>
     <style>
-      #cms-debug{position:fixed;bottom:0;left:0;right:0;background:#1e1e1e;color:#0f0;font:11px monospace;padding:8px 12px;z-index:99999;max-height:220px;overflow-y:auto;display:none}
+      #cms-debug{position:fixed;bottom:0;left:0;right:0;background:#1e1e1e;color:#0f0;font:11px monospace;padding:8px 12px;z-index:99999;max-height:200px;overflow-y:auto;display:none}
     </style>
     <script>
       var dbg = null;
@@ -22,11 +22,6 @@
         var s = Array.from(arguments).map(function(a){ return a&&a.message?a.message:typeof a==='object'?JSON.stringify(a).substring(0,80):String(a); }).join(' ').substring(0,200);
         cmsLog('ERR: '+s); return _oErr.apply(console,arguments);
       };
-      var _oWarn = console.warn.bind(console);
-      console.warn = function() {
-        var s = Array.from(arguments).map(function(a){ return typeof a==='object'?JSON.stringify(a).substring(0,60):String(a); }).join(' ').substring(0,200);
-        cmsLog('WARN: '+s); return _oWarn.apply(console,arguments);
-      };
 
       // Unhandled Promise rejection
       window.addEventListener('unhandledrejection', function(e) {
@@ -34,10 +29,7 @@
         cmsLog('PROMISE ERR: '+(r&&r.message?r.message:JSON.stringify(r)).substring(0,150));
       });
 
-      // JS hibaelfogás
-      window.onerror = function(msg) { cmsLog('JSERR: '+msg.substring(0,150)); };
-
-      // Saját fetch mentése MIELŐTT bármi felülírná
+      // Saját fetch mentése
       var _oFetch = window.fetch.bind(window);
 
       // fetch interceptor
@@ -48,77 +40,92 @@
         return _oFetch(url,opts).then(function(res){
           if (u.indexOf('github')>=0||u.indexOf('/api/')>=0) {
             cmsLog('FETCH← '+res.status+' '+s.substring(0,60));
-            if(!res.ok){ res.clone().text().then(function(t){ cmsLog('BODY: '+t.substring(0,120)); }); }
           }
           return res;
         }, function(err){ cmsLog('FETCHERR: '+err.message); throw err; });
       };
 
-      // XHR interceptor (ha a CMS nem window.fetch-et használ)
+      // XHR interceptor
       var _oOpen = XMLHttpRequest.prototype.open;
       XMLHttpRequest.prototype.open = function(method, url) {
         var u = String(url);
         if (u.indexOf('github')>=0||u.indexOf('/api/')>=0) {
-          cmsLog('XHR→ '+method+' '+u.replace('https://','').substring(0,80));
-          this.addEventListener('load', function(){
-            cmsLog('XHR← '+this.status+' '+u.replace('https://','').substring(0,60));
-            if(this.status>=400){ cmsLog('XHR BODY: '+this.responseText.substring(0,120)); }
-          });
-          this.addEventListener('error', function(){ cmsLog('XHR ERR: '+u.substring(0,60)); });
+          cmsLog('XHR→ '+method+' '+u.replace('https://','').substring(0,70));
+          this.addEventListener('load', function(){ cmsLog('XHR← '+this.status+' '+u.replace('https://','').substring(0,50)); });
         }
         return _oOpen.apply(this, arguments);
       };
 
-      // Message listener interceptor (WeakMap + számozott remove)
+      // ─── FŐ FIX ───────────────────────────────────────────────────────────────
+      // Decap CMS { once:true } message listenereit (auth handler) a Wappalyzer
+      // és más extension-üzenetek "elfogyasztják" mielőtt az auth üzenet megérkezik.
+      // Fix: once-listenerek csak auth üzenetre konzumálódnak, minden egyébre skip.
+      // ──────────────────────────────────────────────────────────────────────────
       var _fnMap = new WeakMap();
       var _cnt = 0;
       var _oAEL = window.addEventListener.bind(window);
       var _oREL = window.removeEventListener.bind(window);
+
       window.addEventListener = function(type, fn, opts) {
-        if (type==='message'&&fn) {
+        if (type === 'message' && fn) {
+          var isOnce   = opts !== null && typeof opts === 'object' && !!opts.once;
+          var capture  = typeof opts === 'boolean' ? opts
+                       : (opts !== null && typeof opts === 'object' ? !!opts.capture : false);
+          // opts to pass to browser — with 'once' stripped (we manage it ourselves)
+          var bareOpts = isOnce ? capture : opts;
+
           _cnt++;
-          var idx=_cnt;
-          cmsLog('[L] #'+idx+' added');
-          var w=function(e){
-            if(typeof e.data==='string'&&e.data.indexOf('authorization:')===0){
+          var idx = _cnt;
+          cmsLog('[L] #'+idx+' added'+(isOnce?' [once]':''));
+
+          var done = false;
+          var w = function(e) {
+            if (done) return;
+
+            if (isOnce) {
+              // Ne fogyasszuk el, ha nem auth üzenet (Wappalyzer, stb.)
+              var isAuth = typeof e.data === 'string' && e.data.indexOf('authorization:') === 0;
+              if (!isAuth) return; // skip — listener életben marad
+              // Auth üzenet → konzumál és eltávolít
+              done = true;
+              _fnMap.delete(fn);
+              _oREL(type, w, capture);
+              cmsLog('[L] #'+idx+' [once] consumed by AUTH');
+            }
+
+            if (typeof e.data === 'string' && e.data.indexOf('authorization:') === 0) {
               cmsLog('[L] #'+idx+' KAPTA AUTH origin='+e.origin);
             }
-            return fn.apply(this,arguments);
+            return fn.apply(this, arguments);
           };
-          _fnMap.set(fn,{idx:idx,w:w});
-          return _oAEL(type,w,opts);
+
+          _fnMap.set(fn, {idx: idx, w: w});
+          return _oAEL(type, w, bareOpts);
         }
-        return _oAEL(type,fn,opts);
-      };
-      window.removeEventListener = function(type, fn, opts) {
-        if (type==='message'&&fn) {
-          var info=_fnMap.get(fn);
-          if(info){ cmsLog('[L] #'+info.idx+' removed'); _fnMap.delete(fn); return _oREL(type,info.w,opts); }
-          else { cmsLog('[L] removed (untracked)'); }
-        }
-        return _oREL(type,fn,opts);
+        return _oAEL(type, fn, opts);
       };
 
-      // SAJÁT auth üzenet listener — GitHub API-t mi hívjuk a saját fetch-ünkkel
+      window.removeEventListener = function(type, fn, opts) {
+        if (type === 'message' && fn) {
+          var info = _fnMap.get(fn);
+          if (info) { cmsLog('[L] #'+info.idx+' removed'); _fnMap.delete(fn); return _oREL(type, info.w, opts); }
+          else { cmsLog('[L] removed (untracked)'); }
+        }
+        return _oREL(type, fn, opts);
+      };
+
+      // Saját listener — manuális GitHub API teszt (diagnosztika)
       _oAEL('message', function(e) {
-        if (typeof e.data!=='string'||e.data.indexOf('authorization:github:success:')!==0) return;
-        cmsLog('MSG AUTH: '+e.data.substring(0,100));
+        if (typeof e.data !== 'string' || e.data.indexOf('authorization:github:success:') !== 0) return;
+        cmsLog('MSG AUTH OK: '+e.data.substring(0,90));
         try {
-          var json = e.data.substring('authorization:github:success:'.length);
-          var data = JSON.parse(json);
-          var token = data.token;
-          cmsLog('MANUAL: token='+token.substring(0,16)+'...');
+          var token = JSON.parse(e.data.substring('authorization:github:success:'.length)).token;
           _oFetch('https://api.github.com/user', {
             headers: {'Authorization':'token '+token,'Accept':'application/vnd.github.v3+json'}
-          }).then(function(res){
-            cmsLog('GitHub /user → '+res.status);
-            return res.json();
-          }).then(function(u){
-            cmsLog('GitHub user: '+u.login+' ('+u.name+')');
-          }).catch(function(err){
-            cmsLog('GitHub API hiba: '+err.message);
-          });
-        } catch(err) { cmsLog('MANUAL parse err: '+err.message); }
+          }).then(function(r){ return r.json(); }).then(function(u){
+            cmsLog('GitHub user: '+u.login);
+          }).catch(function(err){ cmsLog('GitHub API err: '+err.message); });
+        } catch(err) { cmsLog('parse err: '+err.message); }
       }, false);
 
       window.CMS_MANUAL_INIT = true;
