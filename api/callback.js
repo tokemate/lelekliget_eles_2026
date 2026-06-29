@@ -30,25 +30,29 @@ export default async function handler(req, res) {
   const msgData = JSON.stringify({ token: access_token, provider: 'github' });
   const fullMsg = JSON.stringify('authorization:github:success:' + msgData);
 
-  html(res, `<script>
+  // <pre> BEFORE the script so it exists when the script runs
+  html(res, `<pre id="log" style="padding:1rem;background:#f0f0f0;font-size:13px;font-family:monospace">Debug log:
+</pre>
+<script>
 (function() {
-  var log = function(t) { document.getElementById('log').textContent += t + '\\n'; };
+  var el = document.getElementById('log');
+  var log = function(t) { el.textContent += t + '\\n'; };
+
   log('window.opener: ' + (window.opener ? 'OK' : 'NULL'));
 
   var msg = ${fullMsg};
-  log('msg prefix: ' + msg.substring(0, 50));
+  log('msg eleje: ' + msg.substring(0, 60));
 
   if (!window.opener) {
-    log('HIBA: window.opener null - nem tud üzenetet küldeni!');
+    log('HIBA: window.opener null!');
     return;
   }
 
   window.opener.postMessage(msg, '*');
-  log('postMessage elküldve');
+  log('postMessage elküldve - 3mp múlva bezár');
   setTimeout(function() { window.close(); }, 3000);
 })();
-</script>
-<pre id="log" style="padding:1rem;background:#f0f0f0;font-size:13px;font-family:monospace">Debug log:\n</pre>`);
+<\/script>`);
 }
 
 function html(res, body) {
