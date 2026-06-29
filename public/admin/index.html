@@ -5,15 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <title>Tartalom kezelés | Lélekliget</title>
+    <style>
+      #cms-debug{position:fixed;bottom:0;left:0;right:0;background:#1e1e1e;color:#0f0;font:12px monospace;padding:8px 12px;z-index:99999;max-height:120px;overflow-y:auto;display:none}
+    </style>
     <script>
+      var dbg = null;
+      function cmsLog(msg) {
+        if (!dbg) { dbg = document.getElementById('cms-debug'); }
+        if (dbg) { dbg.style.display='block'; dbg.textContent += msg + '\n'; dbg.scrollTop=9999; }
+        console.log('[CMS]', msg);
+      }
       window.addEventListener('message', function(e) {
-        var d = typeof e.data === 'string' ? e.data.substring(0, 120) : JSON.stringify(e.data);
-        console.log('[CMS DEBUG] postMessage | origin:', e.origin, '| adat:', d);
+        var d = typeof e.data === 'string' ? e.data.substring(0, 100) : JSON.stringify(e.data);
+        cmsLog('MSG origin=' + e.origin + ' data=' + d);
       });
       window.CMS_MANUAL_INIT = true;
     </script>
   </head>
   <body>
+    <div id="cms-debug"></div>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
     <script>
       try {
