@@ -6,7 +6,7 @@
     <meta name="robots" content="noindex" />
     <title>Tartalom kezelés | Lélekliget</title>
     <style>
-      #cms-debug{position:fixed;bottom:0;left:0;right:0;background:#1e1e1e;color:#0f0;font:12px monospace;padding:8px 12px;z-index:99999;max-height:120px;overflow-y:auto;display:none}
+      #cms-debug{position:fixed;bottom:0;left:0;right:0;background:#1e1e1e;color:#0f0;font:11px monospace;padding:8px 12px;z-index:99999;max-height:160px;overflow-y:auto;display:none}
     </style>
     <script>
       var dbg = null;
@@ -15,10 +15,48 @@
         if (dbg) { dbg.style.display='block'; dbg.textContent += msg + '\n'; dbg.scrollTop=9999; }
         console.log('[CMS]', msg);
       }
-      window.addEventListener('message', function(e) {
-        var d = typeof e.data === 'string' ? e.data.substring(0, 100) : JSON.stringify(e.data);
-        cmsLog('MSG origin=' + e.origin + ' data=' + d);
-      });
+
+      // Intercept window.addEventListener so we can see when Decap CMS attaches
+      // its own message listener (happens when user clicks "Login with GitHub")
+      var _cmsListenerCount = 0;
+      var _origAEL = window.addEventListener.bind(window);
+      var _origREL = window.removeEventListener.bind(window);
+      window.addEventListener = function(type, fn, opts) {
+        if (type === 'message') {
+          _cmsListenerCount++;
+          var idx = _cmsListenerCount;
+          cmsLog('[HOOK] message listener #' + idx + ' added');
+          var wrapped = function(e) {
+            if (typeof e.data === 'string' && e.data.indexOf('authorization:') === 0) {
+              cmsLog('[HOOK] listener #' + idx + ' kapta: origin=' + e.origin + ' data=' + e.data.substring(0, 80));
+            }
+            return fn.apply(this, arguments);
+          };
+          wrapped._orig = fn;
+          return _origAEL(type, wrapped, opts);
+        }
+        return _origAEL(type, fn, opts);
+      };
+      window.removeEventListener = function(type, fn, opts) {
+        if (type === 'message') {
+          cmsLog('[HOOK] message listener eltávolítva');
+        }
+        return _origREL(type, fn, opts);
+      };
+
+      // Our own listener — logs ALL incoming messages (filter noise)
+      _origAEL('message', function(e) {
+        var d = typeof e.data === 'string' ? e.data.substring(0, 120) : JSON.stringify(e.data).substring(0, 60);
+        // Skip Wappalyzer and other browser-extension noise
+        if (typeof e.data === 'string' && (e.data.indexOf('authorization:') === 0 || e.data.indexOf('decap') >= 0)) {
+          cmsLog('MSG origin=' + e.origin + ' data=' + d);
+        } else if (typeof e.data !== 'string') {
+          // skip non-string messages (React DevTools, Wappalyzer, etc.)
+        } else {
+          cmsLog('MSG origin=' + e.origin + ' data=' + d);
+        }
+      }, false);
+
       window.CMS_MANUAL_INIT = true;
     </script>
   </head>
