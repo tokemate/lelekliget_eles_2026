@@ -6,7 +6,7 @@
     <meta name="robots" content="noindex" />
     <title>Tartalom kezelés | Lélekliget</title>
     <style>
-      #cms-debug{position:fixed;bottom:0;left:0;right:0;background:#1e1e1e;color:#0f0;font:11px monospace;padding:8px 12px;z-index:99999;max-height:200px;overflow-y:auto;display:none}
+      #cms-debug{position:fixed;bottom:0;left:0;right:0;background:#1e1e1e;color:#0f0;font:11px monospace;padding:8px 12px;z-index:99999;max-height:220px;overflow-y:auto;display:none}
     </style>
     <script>
       var dbg = null;
@@ -16,81 +16,109 @@
         console.log('[CMS]', msg);
       }
 
-      // 1) console.error / warn elfogás
+      // console.error / warn elfogás
       var _oErr = console.error.bind(console);
       console.error = function() {
-        var s = Array.from(arguments).map(function(a){
-          return (a && a.message) ? a.message : (typeof a==='object'?JSON.stringify(a):String(a));
-        }).join(' ').substring(0,200);
-        cmsLog('ERR: '+s);
-        return _oErr.apply(console, arguments);
+        var s = Array.from(arguments).map(function(a){ return a&&a.message?a.message:typeof a==='object'?JSON.stringify(a).substring(0,80):String(a); }).join(' ').substring(0,200);
+        cmsLog('ERR: '+s); return _oErr.apply(console,arguments);
       };
       var _oWarn = console.warn.bind(console);
       console.warn = function() {
-        var s = Array.from(arguments).map(function(a){
-          return typeof a==='object'?JSON.stringify(a):String(a);
-        }).join(' ').substring(0,200);
-        cmsLog('WARN: '+s);
-        return _oWarn.apply(console, arguments);
+        var s = Array.from(arguments).map(function(a){ return typeof a==='object'?JSON.stringify(a).substring(0,60):String(a); }).join(' ').substring(0,200);
+        cmsLog('WARN: '+s); return _oWarn.apply(console,arguments);
       };
 
-      // 2) fetch elfogás – minden github.com és /api/ hívás
-      var _oFetch = window.fetch;
+      // Unhandled Promise rejection
+      window.addEventListener('unhandledrejection', function(e) {
+        var r = e.reason;
+        cmsLog('PROMISE ERR: '+(r&&r.message?r.message:JSON.stringify(r)).substring(0,150));
+      });
+
+      // JS hibaelfogás
+      window.onerror = function(msg) { cmsLog('JSERR: '+msg.substring(0,150)); };
+
+      // Saját fetch mentése MIELŐTT bármi felülírná
+      var _oFetch = window.fetch.bind(window);
+
+      // fetch interceptor
       window.fetch = function(url, opts) {
-        var u = typeof url === 'string' ? url : (url&&url.url)||'?';
-        var short = u.replace('https://','').substring(0,90);
-        if (u.indexOf('github') >= 0 || u.indexOf('/api/') >= 0) {
-          cmsLog('FETCH → '+short);
-        }
-        return _oFetch.apply(window, arguments).then(function(res) {
-          if (u.indexOf('github') >= 0 || u.indexOf('/api/') >= 0) {
-            cmsLog('FETCH ← '+res.status+' '+short.substring(0,70));
-            if (!res.ok) {
-              res.clone().text().then(function(t){ cmsLog('BODY: '+t.substring(0,120)); });
-            }
+        var u = typeof url==='string'?url:(url&&url.url)||'?';
+        var s = u.replace('https://','').substring(0,90);
+        if (u.indexOf('github')>=0||u.indexOf('/api/')>=0) { cmsLog('FETCH→ '+s); }
+        return _oFetch(url,opts).then(function(res){
+          if (u.indexOf('github')>=0||u.indexOf('/api/')>=0) {
+            cmsLog('FETCH← '+res.status+' '+s.substring(0,60));
+            if(!res.ok){ res.clone().text().then(function(t){ cmsLog('BODY: '+t.substring(0,120)); }); }
           }
           return res;
-        }, function(err) {
-          cmsLog('FETCH ERR: '+err.message+' '+short.substring(0,50));
-          throw err;
-        });
+        }, function(err){ cmsLog('FETCHERR: '+err.message); throw err; });
       };
 
-      // 3) message listener interceptor (WeakMap-alapú, helyes remove)
+      // XHR interceptor (ha a CMS nem window.fetch-et használ)
+      var _oOpen = XMLHttpRequest.prototype.open;
+      XMLHttpRequest.prototype.open = function(method, url) {
+        var u = String(url);
+        if (u.indexOf('github')>=0||u.indexOf('/api/')>=0) {
+          cmsLog('XHR→ '+method+' '+u.replace('https://','').substring(0,80));
+          this.addEventListener('load', function(){
+            cmsLog('XHR← '+this.status+' '+u.replace('https://','').substring(0,60));
+            if(this.status>=400){ cmsLog('XHR BODY: '+this.responseText.substring(0,120)); }
+          });
+          this.addEventListener('error', function(){ cmsLog('XHR ERR: '+u.substring(0,60)); });
+        }
+        return _oOpen.apply(this, arguments);
+      };
+
+      // Message listener interceptor (WeakMap + számozott remove)
       var _fnMap = new WeakMap();
       var _cnt = 0;
       var _oAEL = window.addEventListener.bind(window);
       var _oREL = window.removeEventListener.bind(window);
       window.addEventListener = function(type, fn, opts) {
-        if (type === 'message' && fn) {
+        if (type==='message'&&fn) {
           _cnt++;
-          var idx = _cnt;
+          var idx=_cnt;
           cmsLog('[L] #'+idx+' added');
-          var w = function(e) {
-            if (typeof e.data === 'string' && e.data.indexOf('authorization:') === 0) {
+          var w=function(e){
+            if(typeof e.data==='string'&&e.data.indexOf('authorization:')===0){
               cmsLog('[L] #'+idx+' KAPTA AUTH origin='+e.origin);
             }
-            return fn.apply(this, arguments);
+            return fn.apply(this,arguments);
           };
-          _fnMap.set(fn, w);
-          return _oAEL(type, w, opts);
+          _fnMap.set(fn,{idx:idx,w:w});
+          return _oAEL(type,w,opts);
         }
-        return _oAEL(type, fn, opts);
+        return _oAEL(type,fn,opts);
       };
       window.removeEventListener = function(type, fn, opts) {
-        if (type === 'message' && fn) {
-          cmsLog('[L] removed');
-          var w = _fnMap.get(fn);
-          if (w) { _fnMap.delete(fn); return _oREL(type, w, opts); }
+        if (type==='message'&&fn) {
+          var info=_fnMap.get(fn);
+          if(info){ cmsLog('[L] #'+info.idx+' removed'); _fnMap.delete(fn); return _oREL(type,info.w,opts); }
+          else { cmsLog('[L] removed (untracked)'); }
         }
-        return _oREL(type, fn, opts);
+        return _oREL(type,fn,opts);
       };
 
-      // 4) saját listener – auth üzenet figyelés
+      // SAJÁT auth üzenet listener — GitHub API-t mi hívjuk a saját fetch-ünkkel
       _oAEL('message', function(e) {
-        if (typeof e.data === 'string' && e.data.indexOf('authorization:') === 0) {
-          cmsLog('MSG AUTH origin='+e.origin+' data='+e.data.substring(0,100));
-        }
+        if (typeof e.data!=='string'||e.data.indexOf('authorization:github:success:')!==0) return;
+        cmsLog('MSG AUTH: '+e.data.substring(0,100));
+        try {
+          var json = e.data.substring('authorization:github:success:'.length);
+          var data = JSON.parse(json);
+          var token = data.token;
+          cmsLog('MANUAL: token='+token.substring(0,16)+'...');
+          _oFetch('https://api.github.com/user', {
+            headers: {'Authorization':'token '+token,'Accept':'application/vnd.github.v3+json'}
+          }).then(function(res){
+            cmsLog('GitHub /user → '+res.status);
+            return res.json();
+          }).then(function(u){
+            cmsLog('GitHub user: '+u.login+' ('+u.name+')');
+          }).catch(function(err){
+            cmsLog('GitHub API hiba: '+err.message);
+          });
+        } catch(err) { cmsLog('MANUAL parse err: '+err.message); }
       }, false);
 
       window.CMS_MANUAL_INIT = true;
@@ -133,9 +161,7 @@
           ],
         },
       });
-      } catch(err) {
-        cmsLog('INIT ERR: '+err.message);
-      }
+      } catch(err) { cmsLog('INIT ERR: '+err.message); }
     </script>
   </body>
 </html>
