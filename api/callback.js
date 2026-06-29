@@ -1,17 +1,15 @@
 export default async function handler(req, res) {
   const { code, error: oauthError } = req.query;
 
-  if (oauthError) {
-    return res.send(errorPage('GitHub OAuth hiba: ' + oauthError));
+  if (oauthError || !code) {
+    return res.setHeader('Content-Type', 'text/html').send(
+      `<p style="color:red;font-family:sans-serif;padding:2rem">OAuth hiba: ${oauthError || 'hiányzó code'}</p>`
+    );
   }
 
-  if (!code) {
-    return res.send(errorPage('Hiányzó code paraméter'));
-  }
-
-  let tokenData;
+  let access_token, tokenError;
   try {
-    const tokenRes = await fetch('https://github.com/login/oauth/access_token', {
+    const r = await fetch('https://github.com/login/oauth/access_token', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({
@@ -20,38 +18,29 @@ export default async function handler(req, res) {
         code,
       }),
     });
-    tokenData = await tokenRes.json();
+    const data = await r.json();
+    access_token = data.access_token;
+    tokenError   = data.error;
   } catch (e) {
-    return res.send(errorPage('Fetch hiba: ' + e.message));
+    tokenError = e.message;
   }
-
-  const { access_token, error: tokenError } = tokenData;
 
   if (tokenError || !access_token) {
-    return res.send(errorPage('Token hiba: ' + JSON.stringify(tokenData)));
+    return res.setHeader('Content-Type', 'text/html').send(
+      `<p style="color:red;font-family:sans-serif;padding:2rem">Token hiba: ${tokenError || 'üres token'}</p>`
+    );
   }
 
-  const payload = JSON.stringify(JSON.stringify({ token: access_token, provider: 'github' }));
+  // Build the postMessage string Decap CMS expects
+  const msgData = JSON.stringify({ token: access_token, provider: 'github' });
+  const fullMsg = JSON.stringify('authorization:github:success:' + msgData);
 
   res.setHeader('Content-Type', 'text/html');
   res.send(`<!doctype html><html><body><script>
 (function() {
-  var payload = ${payload};
-  function onMessage(e) {
-    window.removeEventListener('message', onMessage, false);
-    window.opener.postMessage('authorization:github:success:' + payload, e.origin);
-    window.close();
-  }
-  window.addEventListener('message', onMessage, false);
-  window.opener.postMessage('authorizing:github', '*');
+  var msg = ${fullMsg};
+  window.opener.postMessage(msg, '*');
+  setTimeout(function() { window.close(); }, 500);
 })();
 </script></body></html>`);
-}
-
-function errorPage(msg) {
-  return `<!doctype html><html><body style="font-family:sans-serif;padding:2rem">
-<h2 style="color:red">CMS bejelentkezési hiba</h2>
-<pre style="background:#f5f5f5;padding:1rem;border-radius:8px">${msg}</pre>
-<p>Zárd be ezt az ablakot és próbáld újra.</p>
-</body></html>`;
 }
