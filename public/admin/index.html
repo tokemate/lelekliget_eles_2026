@@ -5,137 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <title>Tartalom kezelés | Lélekliget</title>
-    <style>
-      #cms-debug{position:fixed;bottom:0;left:0;right:0;background:#1e1e1e;color:#0f0;font:11px monospace;padding:8px 12px;z-index:99999;max-height:200px;overflow-y:auto;display:none}
-    </style>
     <script>
-      var dbg = null;
-      function cmsLog(msg) {
-        if (!dbg) { dbg = document.getElementById('cms-debug'); }
-        if (dbg) { dbg.style.display='block'; dbg.textContent += msg + '\n'; dbg.scrollTop=9999; }
-        console.log('[CMS]', msg);
-      }
-
-      // console.error / warn elfogás
-      var _oErr = console.error.bind(console);
-      console.error = function() {
-        var s = Array.from(arguments).map(function(a){ return a&&a.message?a.message:typeof a==='object'?JSON.stringify(a).substring(0,80):String(a); }).join(' ').substring(0,200);
-        cmsLog('ERR: '+s); return _oErr.apply(console,arguments);
-      };
-
-      // Unhandled Promise rejection
-      window.addEventListener('unhandledrejection', function(e) {
-        var r = e.reason;
-        cmsLog('PROMISE ERR: '+(r&&r.message?r.message:JSON.stringify(r)).substring(0,150));
-      });
-
-      // Saját fetch mentése
-      var _oFetch = window.fetch.bind(window);
-
-      // fetch interceptor
-      window.fetch = function(url, opts) {
-        var u = typeof url==='string'?url:(url&&url.url)||'?';
-        var s = u.replace('https://','').substring(0,90);
-        if (u.indexOf('github')>=0||u.indexOf('/api/')>=0) { cmsLog('FETCH→ '+s); }
-        return _oFetch(url,opts).then(function(res){
-          if (u.indexOf('github')>=0||u.indexOf('/api/')>=0) {
-            cmsLog('FETCH← '+res.status+' '+s.substring(0,60));
-          }
-          return res;
-        }, function(err){ cmsLog('FETCHERR: '+err.message); throw err; });
-      };
-
-      // XHR interceptor
-      var _oOpen = XMLHttpRequest.prototype.open;
-      XMLHttpRequest.prototype.open = function(method, url) {
-        var u = String(url);
-        if (u.indexOf('github')>=0||u.indexOf('/api/')>=0) {
-          cmsLog('XHR→ '+method+' '+u.replace('https://','').substring(0,70));
-          this.addEventListener('load', function(){ cmsLog('XHR← '+this.status+' '+u.replace('https://','').substring(0,50)); });
-        }
-        return _oOpen.apply(this, arguments);
-      };
-
-      // ─── FŐ FIX ───────────────────────────────────────────────────────────────
-      // Decap CMS { once:true } message listenereit (auth handler) a Wappalyzer
-      // és más extension-üzenetek "elfogyasztják" mielőtt az auth üzenet megérkezik.
-      // Fix: once-listenerek csak auth üzenetre konzumálódnak, minden egyébre skip.
-      // ──────────────────────────────────────────────────────────────────────────
-      var _fnMap = new WeakMap();
-      var _cnt = 0;
-      var _oAEL = window.addEventListener.bind(window);
-      var _oREL = window.removeEventListener.bind(window);
-
-      window.addEventListener = function(type, fn, opts) {
-        if (type === 'message' && fn) {
-          var isOnce   = opts !== null && typeof opts === 'object' && !!opts.once;
-          var capture  = typeof opts === 'boolean' ? opts
-                       : (opts !== null && typeof opts === 'object' ? !!opts.capture : false);
-          // opts to pass to browser — with 'once' stripped (we manage it ourselves)
-          var bareOpts = isOnce ? capture : opts;
-
-          _cnt++;
-          var idx = _cnt;
-          cmsLog('[L] #'+idx+' added'+(isOnce?' [once]':''));
-
-          var done = false;
-          var w = function(e) {
-            if (done) return;
-
-            if (isOnce) {
-              // Ne fogyasszuk el, ha nem auth üzenet (Wappalyzer, stb.)
-              var isAuth = typeof e.data === 'string' && e.data.indexOf('authorization:') === 0;
-              if (!isAuth) return; // skip — listener életben marad
-              // Auth üzenet → konzumál és eltávolít
-              done = true;
-              _fnMap.delete(fn);
-              _oREL(type, w, capture);
-              cmsLog('[L] #'+idx+' [once] consumed by AUTH');
-            }
-
-            if (typeof e.data === 'string' && e.data.indexOf('authorization:') === 0) {
-              cmsLog('[L] #'+idx+' KAPTA AUTH origin='+e.origin);
-            }
-            return fn.apply(this, arguments);
-          };
-
-          _fnMap.set(fn, {idx: idx, w: w});
-          return _oAEL(type, w, bareOpts);
-        }
-        return _oAEL(type, fn, opts);
-      };
-
-      window.removeEventListener = function(type, fn, opts) {
-        if (type === 'message' && fn) {
-          var info = _fnMap.get(fn);
-          if (info) { cmsLog('[L] #'+info.idx+' removed'); _fnMap.delete(fn); return _oREL(type, info.w, opts); }
-          else { cmsLog('[L] removed (untracked)'); }
-        }
-        return _oREL(type, fn, opts);
-      };
-
-      // Saját listener — manuális GitHub API teszt (diagnosztika)
-      _oAEL('message', function(e) {
-        if (typeof e.data !== 'string' || e.data.indexOf('authorization:github:success:') !== 0) return;
-        cmsLog('MSG AUTH OK: '+e.data.substring(0,90));
-        try {
-          var token = JSON.parse(e.data.substring('authorization:github:success:'.length)).token;
-          _oFetch('https://api.github.com/user', {
-            headers: {'Authorization':'token '+token,'Accept':'application/vnd.github.v3+json'}
-          }).then(function(r){ return r.json(); }).then(function(u){
-            cmsLog('GitHub user: '+u.login);
-          }).catch(function(err){ cmsLog('GitHub API err: '+err.message); });
-        } catch(err) { cmsLog('parse err: '+err.message); }
-      }, false);
-
       window.CMS_MANUAL_INIT = true;
     </script>
   </head>
   <body>
-    <div id="cms-debug"></div>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
     <script>
-      try {
       CMS.init({
         config: {
           backend: {
@@ -150,6 +26,25 @@
           locale: 'hu',
           collections: [
             {
+              name: 'categories',
+              label: 'Kategóriák',
+              files: [
+                {
+                  name: 'categories',
+                  label: 'Kategória lista',
+                  file: 'src/data/categories.yml',
+                  fields: [
+                    {
+                      label: 'Kategóriák',
+                      name: 'items',
+                      widget: 'list',
+                      field: { label: 'Kategória neve', name: 'name', widget: 'string' },
+                    },
+                  ],
+                },
+              ],
+            },
+            {
               name: 'blog',
               label: 'Blog cikkek',
               label_singular: 'Blog cikk',
@@ -160,15 +55,25 @@
                 { label: 'Cím', name: 'title', widget: 'string' },
                 { label: 'Kivonat', name: 'excerpt', widget: 'text', required: false, hint: 'Rövid összefoglaló (opcionális, de ajánlott)' },
                 { label: 'Dátum', name: 'date', widget: 'datetime', format: 'YYYY-MM-DD', date_format: 'YYYY. MM. DD.', time_format: false },
-                { label: 'Kategória', name: 'category', widget: 'select', required: false, options: ['Prevenció', 'Életmód', 'Diagnosztika', 'Gyermekegészség', 'Holisztikus egészség'] },
+                {
+                  label: 'Kategória',
+                  name: 'category',
+                  widget: 'relation',
+                  required: false,
+                  collection: 'categories',
+                  file: 'categories',
+                  search_fields: ['items.*.name'],
+                  value_field: 'items.*.name',
+                  display_fields: ['items.*.name'],
+                  hint: 'Új kategóriát a "Kategóriák" menüpontban tudsz felvenni vagy törölni.',
+                },
                 { label: 'Borítókép', name: 'coverImage', widget: 'image', required: false },
-                { label: 'Tartalom', name: 'body', widget: 'markdown' },
+                { label: 'Tartalom', name: 'body', widget: 'markdown', modes: ['rich_text'] },
               ],
             },
           ],
         },
       });
-      } catch(err) { cmsLog('INIT ERR: '+err.message); }
     </script>
   </body>
 </html>
