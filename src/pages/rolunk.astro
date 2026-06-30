@@ -27,7 +27,9 @@ const teamMembers = [
     name: 'Molnárné Szabó Kati',
     role: 'Családállítás · Tarot · Ingás oldás',
     photo: '/images/molnarne-szabo-kati.jpg',
-    photoPosition: 'center 35%',
+    photoPosition: 'center top',
+    photoFit: 'contain',
+    photoBg: '#5c5a50',
     quote: '',
     description: 'Tegyük meg együtt az első lépést a rálátás, a megismerés és az elfogadás felé. Családállítás, Tarot, Ingás oldás és még sok mással várlak a Lélekligetben. Mert az élet szép.',
     website: 'https://www.eletszepito.hu',
@@ -183,11 +185,14 @@ const teamMembers = [
           const rest = dotIdx !== -1 ? member.description.slice(dotIdx + 2) : '';
           return (
             <div class="overflow-hidden rounded-2xl shadow-sm bg-white flex flex-col">
-              <div class="aspect-square w-full overflow-hidden">
+              <div
+                class="aspect-square w-full overflow-hidden"
+                style={member.photoBg ? `background-color: ${member.photoBg}` : ''}
+              >
                 <img
                   src={member.photo}
                   alt={member.name}
-                  class="w-full h-full object-cover"
+                  class={`w-full h-full ${member.photoFit === 'contain' ? 'object-contain' : 'object-cover'}`}
                   style={`object-position: ${member.photoPosition ?? 'center top'}`}
                 />
               </div>
