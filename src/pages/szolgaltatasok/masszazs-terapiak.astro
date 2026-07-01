@@ -1,0 +1,127 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BookingCTA from '../../components/ui/BookingCTA.astro';
+
+const specialists = [
+  {
+    name: 'Petrányi Zsoltné Ildikó',
+    phoneDisplay: '06 70/625 2907',
+    phoneHref: 'tel:+36706252907',
+    desc: 'Svéd és nyirok masszázs, thai masszázs, talpmasszázs, energiakezelés',
+  },
+  {
+    name: 'Szabó Árpád',
+    phoneDisplay: '06 30/234 6471',
+    phoneHref: 'tel:+36302346471',
+    desc: 'Masszázskezelések',
+    website: 'https://www.dabasmasszazs.hu',
+    websiteLabel: 'www.dabasmasszazs.hu',
+  },
+  {
+    name: 'Udvardi Zsuzsanna',
+    phoneDisplay: '06 30/676 7703',
+    phoneHref: 'tel:+36306767703',
+    desc: 'Fülakupunktúra, AromaTouch masszázs, SOC (Symphony of Cells terápia)',
+  },
+];
+---
+
+<BaseLayout
+  title="Masszázs, Nyirokmasszázs, AromaTouch, Fülakupunktúra | Lélekliget"
+  description="Svéd- és nyirokmasszázs, thai masszázs, talpmasszázs, AromaTouch, fülakupunktúra és Symphony of Cells terápia Dabas és Inárcs rendelőinkben."
+>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="bg-brand-50 py-20 px-4 text-center">
+    <div class="mx-auto max-w-2xl flex flex-col items-center gap-5">
+      <div class="flex items-center gap-2 flex-wrap justify-center">
+        <span class="inline-flex items-center rounded-full bg-white border border-brand/20 px-3 py-1 text-xs font-medium text-brand-dark">
+          Dabas & Inárcs
+        </span>
+      </div>
+      <h1 class="text-4xl md:text-5xl font-normal text-gray-900">
+        Masszázs, Nyirokmasszázs, AromaTouch, Fülakupunktúra
+      </h1>
+      <p class="text-lg text-gray-600 leading-relaxed max-w-xl">
+        A test és a lélek harmóniájáért – többféle kéz- és energiaterápiás kezelés, szakembereink gondozásában.
+      </p>
+      <a
+        href="/idopontfoglalas"
+        class="inline-flex items-center gap-2 rounded-full bg-brand hover:bg-brand-dark text-white px-8 py-3 text-sm font-semibold transition-colors shadow-md shadow-brand/20"
+      >
+        Időpontot foglalok →
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══ TARTALOM ═══ -->
+  <section class="py-20 px-4">
+    <div class="max-w-3xl mx-auto flex flex-col gap-10">
+      <div class="flex flex-col gap-4">
+        <span class="inline-flex w-fit items-center rounded-full bg-brand-50 border border-brand/20 px-3 py-1 text-xs font-semibold tracking-widest uppercase text-brand-dark">
+          Kiegészítő terápiák
+        </span>
+        <h2 class="text-3xl font-normal text-gray-900">
+          Kéz- és energiaterápiás kezelések
+        </h2>
+        <p class="text-gray-600 leading-relaxed">
+          A masszázskezelés menetével, kivitelezésével és az alkalmazott technikákkal
+          kapcsolatban kérjük, közvetlenül a kezelést végző szakembernél érdeklődjön.
+        </p>
+      </div>
+
+      <!-- Szakembereink -->
+      <div class="flex flex-col gap-4">
+        {specialists.map(sp => (
+          <div class="bg-brand-50 rounded-2xl p-6 flex flex-col gap-2 border border-brand/10">
+            <h3 class="text-lg font-medium text-gray-900">{sp.name}</h3>
+            <p class="text-sm text-gray-600">{sp.desc}</p>
+            <div class="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1">
+              <a href={sp.phoneHref} class="inline-flex items-center gap-1.5 text-sm font-medium text-brand hover:text-brand-dark transition-colors">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.36 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                {sp.phoneDisplay}
+              </a>
+              {sp.website && (
+                <a href={sp.website} target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-brand hover:text-brand-dark transition-colors hover:underline">
+                  {sp.websiteLabel}
+                </a>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <a href="/arlista" class="inline-flex items-center gap-1.5 text-sm font-medium text-brand hover:text-brand-dark transition-colors w-fit">
+        Teljes árlista megtekintése →
+      </a>
+
+      <!-- Helyszín kártyák -->
+      <div class="grid sm:grid-cols-2 gap-4">
+        {[
+          { name: 'Lélekliget Gyógycentrum – Inárcs magánrendelés', address: '2365 Inárcs, Kastély u. 4.' },
+          { name: 'Lélekliget Dabas', address: '2370 Dabas, Vörösmarty u. 3. emelet' },
+        ].map(loc => (
+          <div class="bg-white rounded-2xl p-6 flex flex-col gap-2 border border-gray-100">
+            <div class="flex items-start gap-2 text-gray-700">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#41bdc4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-0.5">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+              </svg>
+              <div>
+                <p class="font-medium text-sm">{loc.name}</p>
+                <p class="text-xs text-gray-500 mt-0.5">{loc.address}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <BookingCTA
+    title="Foglaljon masszázst vagy kezelést"
+    description="Svéd- és nyirokmasszázs, thai masszázs, talpmasszázs, AromaTouch, fülakupunktúra és Symphony of Cells terápia – időpont egyeztetés a szakembereinkkel."
+  />
+
+</BaseLayout>

@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BookingCTA from '../../components/ui/BookingCTA.astro';
+---
+
+<BaseLayout
+  title="Általános Belgyógyászat | Lélekliget"
+  description="Általános belgyógyászati vizsgálat: átfogó állapotfelmérés, vérnyomás- és keringésvizsgálat, prevenció és egészségmegőrzés Inárcson."
+>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="bg-brand-50 py-20 px-4 text-center">
+    <div class="mx-auto max-w-2xl flex flex-col items-center gap-5">
+      <div class="flex items-center gap-2 flex-wrap justify-center">
+        <span class="inline-flex items-center rounded-full bg-white border border-brand/20 px-3 py-1 text-xs font-medium text-brand-dark">
+          Inárcs
+        </span>
+        <span class="inline-flex items-center rounded-full bg-brand-light border border-brand/20 px-3 py-1 text-xs font-semibold text-brand-dark">
+          25 000 Ft
+        </span>
+      </div>
+      <h1 class="text-4xl md:text-5xl font-normal text-gray-900">
+        Általános Belgyógyászat
+      </h1>
+      <p class="text-lg text-gray-600 leading-relaxed max-w-xl">
+        Az egészségi állapot átfogó felmérése, a panaszok hátterének feltárása, valamint a megelőzés és az egészségmegőrzés támogatása.
+      </p>
+      <a
+        href="/idopontfoglalas"
+        class="inline-flex items-center gap-2 rounded-full bg-brand hover:bg-brand-dark text-white px-8 py-3 text-sm font-semibold transition-colors shadow-md shadow-brand/20"
+      >
+        Időpontot foglalok →
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══ TARTALOM ═══ -->
+  <section class="py-20 px-4">
+    <div class="max-w-3xl mx-auto flex flex-col gap-10">
+      <div class="flex flex-col gap-4">
+        <span class="inline-flex w-fit items-center rounded-full bg-brand-50 border border-brand/20 px-3 py-1 text-xs font-semibold tracking-widest uppercase text-brand-dark">
+          Belgyógyászat
+        </span>
+        <h2 class="text-3xl font-normal text-gray-900">
+          Átfogó állapotfelmérés, prevenciós szemlélettel
+        </h2>
+      </div>
+
+      <div class="prose max-w-none prose-p:text-gray-600 prose-p:leading-relaxed prose-li:text-gray-600 prose-li:marker:text-brand prose-strong:text-gray-800 prose-headings:font-heading prose-headings:font-normal prose-headings:text-gray-900">
+        <p>
+          Az általános belgyógyászati vizsgálat célja az egészségi állapot átfogó felmérése, a
+          panaszok hátterének feltárása, valamint a megelőzés és az egészségmegőrzés támogatása.
+        </p>
+        <p>
+          A konzultáció részletes kórelőzmény-felvétellel (anamnézis) kezdődik, amely során
+          áttekintjük a jelenlegi panaszokat, a korábbi betegségeket, a rendszeresen szedett
+          gyógyszereket, a családi kórelőzményt, valamint az életmóddal kapcsolatos tényezőket.
+        </p>
+        <p><strong>A fizikális vizsgálat során ellenőrizzük:</strong></p>
+        <ul>
+          <li>a vérnyomást és pulzust,</li>
+          <li>a szív- és érrendszer állapotát,</li>
+          <li>a légzőrendszert,</li>
+          <li>a has és a hasi szervek vizsgálatát,</li>
+          <li>a nyirokcsomókat,</li>
+          <li>az esetleges ödémák, keringési vagy mozgásszervi eltérések jelenlétét,</li>
+          <li>az általános egészségi állapotot.</li>
+        </ul>
+        <p>
+          Szükség esetén a vizsgálat kiegészíthető ABPM (24 órás vérnyomás-monitorozás)
+          vizsgálattal, illetve laboratóriumi vagy egyéb szakorvosi vizsgálatok javaslatával.
+        </p>
+        <p>
+          A konzultáció végén részletes tájékoztatást adunk az észlelt eltérésekről, a szükséges
+          további vizsgálatokról, valamint a kezelési és életmódbeli javaslatokról.
+        </p>
+        <p>
+          Rendelésünkön kiemelt figyelmet fordítunk a magas vérnyomás, az anyagcsere-betegségek,
+          a szív- és érrendszeri kockázati tényezők, a krónikus betegségek és az általános
+          egészségmegőrzés korszerű, személyre szabott megközelítésére.
+        </p>
+        <p>
+          Az általános belgyógyászati vizsgálat nemcsak meglévő panaszok esetén ajánlott, hanem
+          rendszeres állapotfelmérés, szűrés és prevenció céljából is.
+        </p>
+      </div>
+
+      <!-- Helyszín kártya -->
+      <div class="bg-brand-50 rounded-2xl p-8 flex flex-col gap-3 border border-brand/10">
+        <h3 class="text-lg font-medium text-gray-900">Helyszín</h3>
+        <div class="flex items-start gap-2 text-gray-700">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#41bdc4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-0.5">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+          <div>
+            <p class="font-medium">Lélekliget Gyógycentrum – Inárcs magánrendelés</p>
+            <p class="text-sm text-gray-500">2365 Inárcs, Kastély u. 4. · Előzetes telefonos időpont egyeztetés szükséges.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <BookingCTA
+    title="Foglaljon időpontot a belgyógyászatra"
+    description="Rendszeres állapotfelmérés, szűrés és prevenció – korszerű, személyre szabott belgyógyászati ellátás Inárcson."
+  />
+
+</BaseLayout>

@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BookingCTA from '../../components/ui/BookingCTA.astro';
+---
+
+<BaseLayout
+  title="ABPM – 24 órás Vérnyomás Monitorozás | Lélekliget"
+  description="24 órás ambuláns vérnyomás-monitorozás (ABPM): pontos kép a vérnyomás alakulásáról a mindennapi tevékenységek során, Inárcson."
+>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="bg-brand-50 py-20 px-4 text-center">
+    <div class="mx-auto max-w-2xl flex flex-col items-center gap-5">
+      <div class="flex items-center gap-2 flex-wrap justify-center">
+        <span class="inline-flex items-center rounded-full bg-white border border-brand/20 px-3 py-1 text-xs font-medium text-brand-dark">
+          Inárcs
+        </span>
+        <span class="inline-flex items-center rounded-full bg-brand-light border border-brand/20 px-3 py-1 text-xs font-semibold text-brand-dark">
+          15 000 Ft
+        </span>
+      </div>
+      <h1 class="text-4xl md:text-5xl font-normal text-gray-900">
+        ABPM – 24 órás Vérnyomás Monitorozás
+      </h1>
+      <p class="text-lg text-gray-600 leading-relaxed max-w-xl">
+        Korszerű diagnosztikai vizsgálat, amely a vérnyomás alakulását követi nyomon a megszokott napi tevékenységek során, nappal és éjszaka egyaránt.
+      </p>
+      <a
+        href="/idopontfoglalas"
+        class="inline-flex items-center gap-2 rounded-full bg-brand hover:bg-brand-dark text-white px-8 py-3 text-sm font-semibold transition-colors shadow-md shadow-brand/20"
+      >
+        Időpontot foglalok →
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══ TARTALOM ═══ -->
+  <section class="py-20 px-4">
+    <div class="max-w-3xl mx-auto flex flex-col gap-10">
+      <div class="flex flex-col gap-4">
+        <span class="inline-flex w-fit items-center rounded-full bg-brand-50 border border-brand/20 px-3 py-1 text-xs font-semibold tracking-widest uppercase text-brand-dark">
+          Belgyógyászat
+        </span>
+        <h2 class="text-3xl font-normal text-gray-900">
+          Pontos kép a vérnyomás valós alakulásáról
+        </h2>
+      </div>
+
+      <div class="prose max-w-none prose-p:text-gray-600 prose-p:leading-relaxed prose-li:text-gray-600 prose-li:marker:text-brand prose-strong:text-gray-800 prose-headings:font-heading prose-headings:font-normal prose-headings:text-gray-900">
+        <p>
+          A 24 órás ambuláns vérnyomás-monitorozás (ABPM) egy korszerű diagnosztikai vizsgálat,
+          amely a vérnyomás alakulását követi nyomon a megszokott napi tevékenységek során,
+          nappal és éjszaka egyaránt.
+        </p>
+        <p>
+          A vizsgálat során a felkarra helyezett vérnyomásmérő mandzsetta és egy kis hordozható
+          készülék automatikusan méri a vérnyomást meghatározott időközönként 24 órán keresztül.
+          A páciens ezalatt a megszokott napi tevékenységeit végezheti.
+        </p>
+        <p><strong>Az ABPM-vizsgálat segítségével pontosabb képet kaphatunk a vérnyomás tényleges alakulásáról, mint egy egyszeri rendelői mérés alapján. Segítséget nyújthat:</strong></p>
+        <ul>
+          <li>a magasvérnyomás-betegség felismerésében,</li>
+          <li>a fehérköpeny-hipertónia (csak rendelőben magas vérnyomás) azonosításában,</li>
+          <li>a rejtett magas vérnyomás felismerésében,</li>
+          <li>a vérnyomáscsökkentő kezelés hatékonyságának ellenőrzésében,</li>
+          <li>az éjszakai vérnyomásváltozások vizsgálatában,</li>
+          <li>a szív- és érrendszeri kockázat pontosabb felmérésében.</li>
+        </ul>
+        <p>
+          A vizsgálat befejezését követően a mért adatokat számítógépes program dolgozza fel. Az
+          eredményeket a páciens kezelőorvosa is értékelheti, vagy igény esetén rendelőnkben
+          részletes szakorvosi elemzést és konzultációt biztosítunk, amely során megbeszéljük az
+          eredményeket, valamint szükség esetén javaslatot teszünk a további kivizsgálásra,
+          életmódbeli változtatásokra vagy a kezelés módosítására.
+        </p>
+        <p>
+          Az ABPM-vizsgálat fájdalommentes, biztonságos és a magas vérnyomás kivizsgálásának
+          egyik legfontosabb diagnosztikai eszköze.
+        </p>
+      </div>
+
+      <!-- Helyszín kártya -->
+      <div class="bg-brand-50 rounded-2xl p-8 flex flex-col gap-3 border border-brand/10">
+        <h3 class="text-lg font-medium text-gray-900">Helyszín</h3>
+        <div class="flex items-start gap-2 text-gray-700">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#41bdc4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-0.5">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+          <div>
+            <p class="font-medium">Lélekliget Gyógycentrum – Inárcs magánrendelés</p>
+            <p class="text-sm text-gray-500">2365 Inárcs, Kastély u. 4. · Előzetes telefonos időpont egyeztetés szükséges.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <BookingCTA
+    title="Foglaljon időpontot ABPM vizsgálatra"
+    description="24 órás vérnyomás-monitorozás szakorvosi elemzéssel és konzultációval, a magas vérnyomás pontos kivizsgálásáért."
+  />
+
+</BaseLayout>

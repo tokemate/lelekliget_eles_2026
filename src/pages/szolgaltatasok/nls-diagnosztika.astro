@@ -1,20 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BookingCTA from '../../components/ui/BookingCTA.astro';
-
-const items = [
-  'Non-invazív, sejtszintű állapotfelmérés: tűszúrás és sugárterhelés nélkül, elektromágneses hullámok segítségével térképezi fel a szervezet, a szervek és a sejtek pillanatnyi funkcionális állapotát.',
-  'A gyökeres okok korai felismerése: képes kimutatni az elváltozásokat még azelőtt, hogy azok fizikai tünetként vagy laboratóriumi eltérésként megjelennének, így a prevenció (megelőzés) legerősebb eszköze.',
-  'Holisztikus összefüggések feltárása: nemcsak egy szervet néz, hanem megmutatja a gócok, a rejtett gyulladások, a környezeti terhelések (toxinok, nehézfémek) és a bélflóra egyensúlyvesztésének rendszerszintű hatásait.',
-  'Személyre szabott terápiás támogatás: segít pontosan meghatározni, hogy a páciens szervezetének milyen vitaminokra, nyomelemekre vagy egyéni életmódváltásra van szüksége a belső egyensúly visszaállításához.',
-  'Gyermek- és felnőttbarát technológia: teljesen fájdalom- és stresszmentes (egy speciális fejhallgató segítségével zajlik), így kisgyermekeknél is kiválóan alkalmazható a beszédindítás, magatartászavarok vagy allergiák hátterének kutatására.',
-  'Azonnali, vizuális eredmények: a vizsgálat során a páciens (és a szülő) a monitoron, 3D-s grafikonokon keresztül, azonnal láthatja a teste energetikai és funkcionális visszajelzéseit.',
-];
 ---
 
 <BaseLayout
-  title="NLS Diagnosztika | Lélekliget"
-  description="Non-invazív teljes test energetikai állapotfelmérés a szervezet információs mezőinek elemzésével. Korai felismerés fájdalom nélkül. Orvosi holisztikus tanácsadás és kezelési terv."
+  title="NLS Teljes Test Állapotfelmérés | Lélekliget"
+  description="Az NLS-rendszer egy számítógéppel támogatott állapotfelmérő módszer, amely a szervezet működéséről nyújt információkat. Korai felismerés fájdalom nélkül."
 >
 
   <!-- ═══ HERO ═══ -->
@@ -29,10 +20,10 @@ const items = [
         </span>
       </div>
       <h1 class="text-4xl md:text-5xl font-normal text-gray-900">
-        NLS Diagnosztika
+        NLS Teljes Test Állapotfelmérés
       </h1>
       <p class="text-lg text-gray-600 leading-relaxed max-w-xl">
-        Non-invazív teljes test energetikai állapotfelmérés a szervezet információs mezőinek elemzésével. Korai felismerés fájdalom nélkül. Orvosi holisztikus tanácsadás és kezelési terv.
+        Számítógéppel támogatott állapotfelmérő módszer, amely a szervezet működéséről nyújt átfogó információkat – korai felismerés, fájdalommentesen.
       </p>
       <a
         href="/idopontfoglalas"
@@ -53,27 +44,32 @@ const items = [
         <h2 class="text-3xl font-normal text-gray-900">
           Non-invazív, sejtszintű állapotfelmérés
         </h2>
-        <p class="text-gray-600 leading-relaxed">
-          Az NLS (Non-Linear System) mérés korszerű, fájdalommentes technológia, amely lehetővé
-          teszi a szervezet funkcionális állapotának feltérképezését. Segítségével még azelőtt
-          felismerjük az egyensúlytalanságokat, hogy azok fizikai tünetekké válnának.
-        </p>
       </div>
       <div class="w-full rounded-2xl overflow-hidden">
         <img src="/images/inarcs/nls-meres.jpg" alt="NLS mérés – Lélekliget" class="w-full h-auto object-cover" />
       </div>
-      <ul class="flex flex-col gap-5">
-        {items.map(item => (
-          <li class="flex items-start gap-4">
-            <span class="shrink-0 w-6 h-6 rounded-full bg-brand-light flex items-center justify-center mt-0.5">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#41bdc4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"/>
-              </svg>
-            </span>
-            <span class="text-gray-700 leading-relaxed">{item}</span>
-          </li>
-        ))}
-      </ul>
+      <div class="prose max-w-none prose-p:text-gray-600 prose-p:leading-relaxed prose-strong:text-gray-800 prose-headings:font-heading prose-headings:font-normal prose-headings:text-gray-900">
+        <p>
+          Az NLS-rendszer egy számítógéppel támogatott állapotfelmérő módszer, amely a szervezet
+          működéséről nyújt információkat. A vizsgálat során a rendszer speciális érzékelők
+          segítségével gyűjt adatokat, amelyeket számítógépes elemzéssel értékel. Az
+          állapotfelmérés célja, hogy átfogó képet adjon a szervezet működéséről, segítsen az
+          esetleges eltérések, terhelések és kockázati tényezők felismerésében, valamint
+          támogassa az egészségtudatos életmód kialakítását.
+        </p>
+        <p>
+          A rendszer lehetőséget biztosít különböző szervek és szervrendszerek működésének
+          összehasonlító elemzésére, valamint egyes környezeti, táplálkozási vagy életmódbeli
+          tényezők szervezetre gyakorolt hatásának vizsgálatára. Az eredmények alapján
+          személyre szabott javaslatok fogalmazhatók meg az életmód, a táplálkozás és az
+          általános egészségmegőrzés támogatására.
+        </p>
+        <p>
+          Az NLS-vizsgálat nem helyettesíti az orvosi diagnózist, a szakorvosi vizsgálatot vagy
+          a laboratóriumi és képalkotó diagnosztikai módszereket, hanem az egészségi állapot
+          komplex felmérésének kiegészítő eszközeként alkalmazható.
+        </p>
+      </div>
 
       <!-- Helyszín kártyák -->
       <div class="grid sm:grid-cols-2 gap-4">

@@ -1,13 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BookingCTA from '../../components/ui/BookingCTA.astro';
-
-const items = [
-  'Oknyomozó diagnosztika: nem elégszünk meg a felszíni tünetek enyhítésével; részletes elemzéssel keressük a krónikus panaszok, fáradékonyság vagy emésztési problémák valódi kiváltó okait.',
-  'Személyre szabott, holisztikus terápia: egyedi kezelési tervet állítunk össze, amely a célzott orvosi támogatás mellett a táplálkozásra, a bélflóra helyreállítására és az életmódra is kiterjed.',
-  'Testi-lelki egyensúly és prevenció: nagy hangsúlyt fektetünk a megelőzésre és a stressz szervezetünkre gyakorolt hatásainak kezelésére, támogatva a hosszan tartó vitalitást.',
-  'Időt szánunk Önre: nálunk a vizsgálat egy alapos, rohanásmentes beszélgetéssel kezdődik, ahol a páciens áll a középpontban.',
-];
 ---
 
 <BaseLayout
@@ -52,18 +45,62 @@ const items = [
           A valódi okok nyomában – egészség tüneti kezelések nélkül
         </h2>
       </div>
-      <ul class="flex flex-col gap-5">
-        {items.map(item => (
-          <li class="flex items-start gap-4">
-            <span class="shrink-0 w-6 h-6 rounded-full bg-brand-light flex items-center justify-center mt-0.5">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#41bdc4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"/>
-              </svg>
-            </span>
-            <span class="text-gray-700 leading-relaxed">{item}</span>
-          </li>
-        ))}
-      </ul>
+      <div class="prose max-w-none prose-p:text-gray-600 prose-p:leading-relaxed prose-li:text-gray-600 prose-li:marker:text-brand prose-strong:text-gray-800 prose-headings:font-heading prose-headings:font-normal prose-headings:text-gray-900">
+        <p>
+          A funkcionális szemléletű belgyógyászati konzultáció célja, hogy a tünetek kezelése
+          mellett azok lehetséges kiváltó okait és összefüggéseit is feltárjuk. A szervezet
+          működését egységes rendszerként vizsgáljuk, figyelembe véve az életmódi, táplálkozási,
+          hormonális, anyagcsere-, emésztőrendszeri és környezeti tényezőket.
+        </p>
+        <p><strong>A konzultáció során részletes anamnézisfelvétel történik, amely kiterjed:</strong></p>
+        <ul>
+          <li>a jelenlegi panaszokra,</li>
+          <li>a korábbi betegségekre és műtétekre,</li>
+          <li>a családi kórelőzményre,</li>
+          <li>a rendszeresen szedett gyógyszerekre és étrend-kiegészítőkre,</li>
+          <li>a táplálkozási szokásokra,</li>
+          <li>az emésztőrendszer működésére,</li>
+          <li>az alvás minőségére,</li>
+          <li>a fizikai aktivitásra,</li>
+          <li>a stresszterhelésre,</li>
+          <li>a környezeti és munkahelyi terhelésekre.</li>
+        </ul>
+        <p>
+          A konzultáció része a belgyógyászati fizikális vizsgálat, a korábbi leletek
+          áttekintése, valamint szükség esetén laboratóriumi és egyéb diagnosztikai vizsgálatok
+          javaslata.
+        </p>
+        <p><strong>Kiemelt figyelmet fordítunk többek között az alábbi területekre:</strong></p>
+        <ul>
+          <li>krónikus fáradtság,</li>
+          <li>emésztőrendszeri panaszok,</li>
+          <li>puffadás, reflux, székletürítési problémák,</li>
+          <li>testsúlyproblémák,</li>
+          <li>inzulinrezisztencia és anyagcserezavarok,</li>
+          <li>magas vérnyomás,</li>
+          <li>hormonális változások,</li>
+          <li>alvászavarok,</li>
+          <li>visszatérő gyulladásos állapotok,</li>
+          <li>stresszel összefüggő panaszok,</li>
+          <li>életmóddal összefüggő krónikus betegségek.</li>
+        </ul>
+        <p>
+          A funkcionális szemlélet nem helyettesíti a hagyományos orvosi diagnosztikát és
+          kezelést, hanem azt kiegészítve segít feltárni azokat a tényezőket, amelyek
+          hozzájárulhatnak a tünetek kialakulásához vagy fennmaradásához.
+        </p>
+        <p>
+          A konzultáció végén személyre szabott javaslatokat adunk az egészségi állapot
+          javítására és a betegségek megelőzésére. Ezek magukban foglalhatják az életmóddal,
+          táplálkozással, alvással, mozgással és stresszkezeléssel kapcsolatos ajánlásokat,
+          valamint a szükséges további kivizsgálások meghatározását.
+        </p>
+        <p>
+          Célunk, hogy a páciensek aktív részesei legyenek saját egészségük megőrzésének, és
+          hosszú távon fenntartható, tudományosan megalapozott megoldásokat találjunk a
+          panaszok hátterében álló okok kezelésére.
+        </p>
+      </div>
 
       <!-- Helyszín kártya -->
       <div class="bg-brand-50 rounded-2xl p-8 flex flex-col gap-3 border border-brand/10">

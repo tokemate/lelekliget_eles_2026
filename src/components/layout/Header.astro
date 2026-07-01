@@ -17,9 +17,17 @@ const locations = [
 
 const services = [
   { label: 'Összes szolgáltatás', href: '/szolgaltatasok', desc: 'Árak és összefoglaló' },
+  { label: 'Általános gyermekgyógyászat', href: '/szolgaltatasok/altalanos-gyermekgyogyaszat', desc: 'Inárcs · 20 000 Ft' },
   { label: 'Funkcionális gyermekgyógyászat', href: '/szolgaltatasok/funkcionalis-gyermekgyogyaszat', desc: 'Inárcs · 35 000 Ft / 30 perc' },
+  { label: 'Általános belgyógyászat', href: '/szolgaltatasok/altalanos-belgyogyaszat', desc: 'Inárcs · 25 000 Ft' },
   { label: 'Funkcionális belgyógyászat', href: '/szolgaltatasok/funkcionalis-belgyogyaszat', desc: 'Inárcs · 35 000 Ft / 30 perc' },
-  { label: 'NLS diagnosztika', href: '/szolgaltatasok/nls-diagnosztika', desc: 'Dabas & Inárcs · 45 000 Ft / 90 perc' },
+  { label: 'Arcüreg átmosás', href: '/szolgaltatasok/arcureg-atmosas', desc: 'Dabas & Inárcs · 15 000 Ft' },
+  { label: 'NLS teljes test állapotfelmérés', href: '/szolgaltatasok/nls-diagnosztika', desc: 'Dabas & Inárcs · 45 000 Ft / 90 perc' },
+  { label: 'GOH', href: '/szolgaltatasok/goh', desc: 'Inárcs · 5 000 Ft' },
+  { label: 'ABPM – 24 órás vérnyomás monitorozás', href: '/szolgaltatasok/abpm', desc: 'Inárcs · 15 000 Ft' },
+  { label: 'Bemer fizikai érterápia', href: '/szolgaltatasok/bemer-terapia', desc: 'Dabas & Inárcs · 25 000 Ft / hét' },
+  { label: 'Masszázs, nyirokmasszázs, AromaTouch, fülakupunktúra', href: '/szolgaltatasok/masszazs-terapiak', desc: 'Dabas & Inárcs' },
+  { label: 'Családállítás, Ingás állítás, Tarot', href: '/szolgaltatasok/csaladallitas', desc: 'Dabas & Inárcs' },
   { label: 'Kiegészítő terápiák', href: '/szolgaltatasok/kiegeszito-terapiak', desc: 'Dabas & Inárcs' },
 ];
 ---
@@ -55,7 +63,7 @@ const services = [
             </svg>
           </button>
 
-          <div id="svc-dropdown" class="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-80 bg-white rounded-2xl shadow-xl border border-gray-100 p-2 hidden z-50">
+          <div id="svc-dropdown" class="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-96 max-h-[75vh] overflow-y-auto bg-white rounded-2xl shadow-xl border border-gray-100 p-2 hidden z-50">
             {services.map((svc, i) => (
               <a href={svc.href} class={`flex flex-col gap-0.5 rounded-xl px-4 py-3 hover:bg-brand-50 transition-colors group${i === 0 ? ' border-b border-gray-100 mb-1' : ''}`}>
                 <span class="text-sm font-medium text-gray-900 group-hover:text-brand transition-colors">{svc.label}</span>
