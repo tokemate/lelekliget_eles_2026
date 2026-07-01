@@ -1,24 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BookingCTA from '../../components/ui/BookingCTA.astro';
-
-const specialAreas = [
-  { label: 'Ételintoleranciák', icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>` },
-  { label: 'Anyagcsere-zavarok', icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>` },
-  { label: 'Hormonális egyensúly', icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>` },
-  { label: 'Sporttáplálkozás', icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>` },
-];
-
-const steps = [
-  { n: '1', title: 'Első konzultáció', desc: 'Alapos anamnézis felvételés és életmódbeli szokások áttekintése.' },
-  { n: '2', title: 'Étrendi terv', desc: 'Az NLS eredmények és az Ön célja alapján összeállított, fenntartható táplálkozási útmutató.' },
-  { n: '3', title: 'Nyomon követés', desc: 'Rendszeres kontrollok finomhangolás az optimális eredmények eléréséhez.' },
-];
 ---
 
 <BaseLayout
   title="Dabasi Gyógycentrum | Lélekliget"
-  description="NLS diagnosztika és személyre szabott étrend-tanácsadás Dabas szívében. Nem invazív, modern megközelítés az Ön egészségéért."
+  description="NLS diagnosztika Dabas szívében. Nem invazív, modern megközelítés az Ön egészségéért."
 >
 
   <!-- ═══ HERO ═══ -->
@@ -94,60 +81,6 @@ const steps = [
     </div>
   </section>
 
-  <!-- ═══ ÉTREND-TANÁCSADÁS ═══ -->
-  <section class="bg-gray-50 py-20 px-4">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="text-3xl font-normal text-gray-900 text-center mb-12">
-        Az étrend, ami megváltoztatja az életet
-      </h2>
-
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
-
-        <!-- Folyamatunk -->
-        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
-          <h3 class="text-lg font-medium text-gray-900 mb-6">Folyamatunk</h3>
-          <blockquote class="border-l-4 border-brand pl-4 mb-6">
-            <p class="text-sm text-gray-600 italic leading-relaxed">
-              „A táplálkozás nem csupán kalóriák bevitele, hanem a gyógyulás első lépése."
-            </p>
-          </blockquote>
-          <div class="flex flex-col gap-5">
-            {steps.map(step => (
-              <div class="flex gap-4 items-start">
-                <span class="shrink-0 w-8 h-8 rounded-full bg-brand text-white text-sm font-semibold flex items-center justify-center">
-                  {step.n}
-                </span>
-                <div>
-                  <p class="text-sm font-semibold text-gray-900 mb-0.5">{step.title}</p>
-                  <p class="text-sm text-gray-500 leading-relaxed">{step.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <!-- Speciális területek -->
-        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
-          <h3 class="text-lg font-medium text-gray-900 mb-2">Speciális területek</h3>
-          <p class="text-sm text-gray-500 leading-relaxed mb-6">
-            Tanácsadásunk során különös figyelmet fordítunk az alábbi speciális állapotokra,
-            biztosítva a legmagasabb szintű szakmai támogatást.
-          </p>
-          <div class="grid grid-cols-2 gap-4">
-            {specialAreas.map(area => (
-              <div class="flex flex-col items-start gap-2.5 rounded-xl border border-gray-100 p-4 hover:border-brand/30 hover:shadow-sm transition-all">
-                <div class="w-10 h-10 rounded-lg bg-brand-light flex items-center justify-center text-brand" set:html={area.icon} />
-                <span class="text-sm font-medium text-gray-800 leading-tight">{area.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
   <!-- ═══ SZOLGÁLTATÁSOK ═══ -->
   <section class="py-20 px-4 bg-gray-50">
     <div class="max-w-5xl mx-auto">
@@ -155,19 +88,13 @@ const steps = [
         <h2 class="text-3xl font-normal text-gray-900 mb-3">Elérhető szolgáltatások</h2>
         <p class="text-gray-500 text-base">Mindezek a Dabasi Gyógycentrumban vehetők igénybe</p>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-3xl mx-auto">
         {[
           {
             title: 'NLS diagnosztika',
             description: 'Non-invazív energetikai állapotfelmérés a szervezet információs mezőinek elemzésével. Korai felismerés fájdalom nélkül.',
             priceLabel: 'Vizsgálati díj',
             price: '32 000',
-          },
-          {
-            title: 'Étrend-tanácsadás',
-            description: 'Személyre szabott táplálkozási terv az életmódváltáshoz. Funkcionális szemlélet, amely figyelembe veszi az egyéni biokémiai sajátosságokat.',
-            priceLabel: 'Konzultációs díj',
-            price: '20 000',
           },
           {
             title: 'Kiegészítő terápiák',
